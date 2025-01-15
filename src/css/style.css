@@ -1,0 +1,39 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+:root {
+    --black: #1B1B1B;
+    --bg-white: #FFFFFB;
+    --bg-medium-white: #F8F4EB;
+    --bg-dark-white: #F2EEE2;
+
+    --fs-sm: clamp(0.9rem, 0.06vi + 0.89rem, 0.94rem);
+    --fs-base: clamp(1.13rem, 0.19vi + 1.08rem, 1.25rem);
+    --fs-md: clamp(1.41rem, 0.4vi + 1.31rem, 1.67rem);
+    --fs-lg: clamp(1.76rem, 0.71vi + 1.59rem, 2.22rem);
+    --fs-xl: clamp(2.2rem, 1.16vi + 1.91rem, 2.96rem);
+    --fs-xxl: clamp(2.75rem, 1.83vi + 2.3rem, 3.95rem);
+    --fs-xxxl: clamp(4rem, 2.79vi + 2.75rem, 8rem);
+
+
+}
+
+body{
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.nav__logo{
+    width: 3.125rem;
+}
