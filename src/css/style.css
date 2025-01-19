@@ -219,7 +219,7 @@ h1 {
     line-height: 3.5rem;
 }
 
-h2{
+h2 {
     font-family: "STIX Two Text", serif;
     font-weight: 500;
     line-height: 99%;
@@ -241,7 +241,7 @@ h2{
     color: var(--bg-white);
 }
 
-.p__emphasis{
+.p__emphasis {
     background-color: rgba(226, 12, 12, 0.4);
 }
 
@@ -260,7 +260,7 @@ h2{
     transform: rotate(-90deg);
 }
 
-p + p{
+p+p {
     margin-top: 2rem;
 }
 
@@ -526,7 +526,7 @@ p + p{
 }
 
 /* --- introduction ------------------------------------------------------------------------------------------------- */
-.introduction__img{
+.introduction__img {
     transform: rotate(9.25deg);
     box-shadow: var(--shadow-base);
     border-radius: 3.125rem;
@@ -534,5 +534,31 @@ p + p{
     margin-bottom: 2rem;
 }
 
+.introduction__container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
 
+@media screen and (min-width: 50em) {
+    .introduction__container {
+        margin-top: 3rem;
+            flex-flow: row-reverse nowrap;
+        }
+    
+        .introduction__img {
+            margin: 3rem;
+            max-width: 20rem;
+        }
+}
 
+@media screen and (min-width: 65em) {
+    .introduction__container {
+            gap: 4rem;
+        }
+    .introduction__img {
+        max-width: 30rem;
+        margin: 1rem;
+    }
+}
