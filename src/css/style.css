@@ -9,7 +9,8 @@ html {
     box-sizing: inherit;
 }
 
-img {
+img,
+picture {
     max-inline-size: 100%;
     block-size: auto;
     display: block
@@ -110,6 +111,10 @@ header{
 .center-with-max {
     max-width: var(--max-page-width);
     margin: 0 auto;
+    overflow-x: hidden;
+    padding: 0 1rem;
+    padding-top: .5rem;
+    overflow-y: visible;
 }
 
 /* --- hamburger menu ---------------------------------------------------------------------------- */
