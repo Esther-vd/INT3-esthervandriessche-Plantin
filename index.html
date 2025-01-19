@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:wght@500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:wght@500&family=Rubik+Dirt&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap"
     rel="stylesheet">
   <title>Plantin - On the Cover</title>
 </head>
@@ -19,9 +19,9 @@
   <header>
     <svg style="display:none">
       <symbol id="navicon" viewBox="0 0 54 57" fill="none">
-          <path d="M17.1816 45.0682V20.5227" stroke="#1B1B1B" stroke-width="3.68182" stroke-linecap="round" />
-          <path d="M36.8184 45.0682V20.5227" stroke="#1B1B1B" stroke-width="3.68182" stroke-linecap="round" />
-          <path d="M27 45.6818V11.3182" stroke="#1B1B1B" stroke-width="3.68182" stroke-linecap="round" />
+        <path d="M17.1816 45.0682V20.5227" stroke="#1B1B1B" stroke-width="3.68182" stroke-linecap="round" />
+        <path d="M36.8184 45.0682V20.5227" stroke="#1B1B1B" stroke-width="3.68182" stroke-linecap="round" />
+        <path d="M27 45.6818V11.3182" stroke="#1B1B1B" stroke-width="3.68182" stroke-linecap="round" />
       </symbol>
       <symbol id="close" viewBox="0 0 24 24" fill="currentColor">
         <path d="M19.1,17.7L6.3,4.9c-.4-.4-1-.4-1.4,0s-.4,1,0,1.4l12.7,12.7c.4.4,1,.4,1.4,0s.4-1,0-1.4Z" />
@@ -45,34 +45,37 @@
         <li class="nav__item"><a class="nav__link" href="#">Ceo on the cover</a></li>
         <li class="nav__item"><a class="nav__link" href="#achievements">Achievements</a></li>
         <li class="nav__item"><a class="nav__link" class="nav__item" href="#tips">Business techniques</a></li>
-        <li class="nav__item"><a class="nav__link" class="primary__button"
+        <li class="nav__item"><a class="nav__link primary__button"
             href="https://museumplantinmoretus.be/nl/content/ontmoet-plantijn-en-zijn-familie">Find out more</a></li>
       </ul>
     </nav>
   </header>
-
+  <main>
   <section class="header__container">
-    <picture class="header__img__paper">
-      <img src="assets/img/newspaper-cover.png" alt="old newspaper: business today">
-    </picture>
-    <picture class="header__img__passport">
-      <img src="assets/img/id-plantin.png" alt="old dust pink passport from plantin">
-    </picture>
+    <h1 class="header__title">On the <br> Cover</h1>
 
-    <h1 class="header__title">On The Cover</h1>
+    <div class="header__container__img">
+      <picture class="header__img__paper">
+        <img src="assets/img/newspaper-cover.png" alt="old newspaper: business today">
+      </picture>
+      <picture class="header__img__passport">
+        <img src="assets/img/id-plantin.png" alt="old dust pink passport from plantin">
+      </picture>
+
+      <picture class="header__img__stamp">
+        <img src="assets/svg/stamp-logo.svg" alt="cracked stamp with the Plantin logo and motto">
+      </picture>
+      <p class="stamp-text header__secondtitle vertical-text">On the <br>
+        Cover</p>
+    </div>
+    
+<p class="red-caps header__red-caps">who is this man?</p>
     <p class="header__paragraph">
       An old newspaper that seems to be all about business. With on the the cover Christophe Plantin the Owner and
       founder
       of
       The Officina Plantiniana.
     </p>
-
-    <picture class="header__img__stamp">
-      <img src="assets/svg/stamp-logo.svg" alt="cracked stamp with the Plantin logo and motto">
-    </picture>
-    <p class="red-caps header__red-caps">who is this man?</p>
-    <p class="stamp-text header__secondtitle">On the
-      Cover</p>
   </section>
 
   <section class="introduction__container">
@@ -342,6 +345,8 @@
       his friends willing to collaborate with him.
     </p>
   </section>
+
+  </main>
   <script src="src/js/hamburger.js"></script>
 </body>
 

@@ -8,9 +8,11 @@ html {
     box-sizing: inherit;
 }
 
-img {
+img,
+picture {
     max-inline-size: 100%;
     block-size: auto;
+    display: block
 }
 
 .hide {
@@ -22,6 +24,7 @@ img {
     --bg-white: #FFFFFB;
     --bg-medium-white: #F8F4EB;
     --bg-dark-white: #F2EEE2;
+    --primary-red: #E20C0C;
 
     --fs-sm: clamp(0.9rem, 0.06vi + 0.89rem, 0.94rem);
     --fs-base: clamp(1.13rem, 0.19vi + 1.08rem, 1.25rem);
@@ -60,21 +63,22 @@ img {
 body {
     font-family: "Roboto Condensed", sans-serif;
     font-size: var(--fs-base);
+    color: var(--black);
+    line-height: 125%;
 }
 
 main {
     max-width: var(--max-page-width);
     margin: 0 auto;
+    overflow-x: hidden;
+    padding: 0 1rem;
+    padding-top: .5rem;
+    overflow-y: visible;
 }
 
 /* --- hamburger menu --- */
-.nav__logo__img{
+.nav__logo__img {
     max-width: 4rem;
-}
-
-nav a:any-link {
-    color: black;
-    text-decoration: none;
 }
 
 nav {
@@ -85,6 +89,8 @@ nav {
     align-items: center;
     justify-content: space-between;
     font-size: var(--fs-base);
+    margin-bottom: 1.5rem;
+    z-index: -10;
 }
 
 .nav__button {
@@ -103,6 +109,7 @@ nav {
     grid-row: 2;
     grid-column: 1 / span 2;
     padding-top: 2rem;
+    align-items: center;
 }
 
 .nav__item {
@@ -110,13 +117,15 @@ nav {
 }
 
 .nav__item:last-of-type {
-    border-bottom: solid 1px black;
+    padding: 1rem;
 }
 
 .nav__link {
     display: block;
     text-align: center;
     padding: 1rem 0;
+    color: black;
+    text-decoration: none;
 }
 
 .nav__link:hover {
@@ -124,11 +133,12 @@ nav {
     letter-spacing: -.1px;
 }
 
-@media screen and (min-width: 45em) {
+@media screen and (min-width: 60em) {
     nav {
         grid-template-columns: min-content auto;
         align-items: center;
         justify-content: space-between;
+        margin: 2rem 5rem;
     }
 
     .nav__title {
@@ -161,3 +171,116 @@ nav {
         padding-inline: 2rem;
     }
 }
+
+/* --- General styles --- */
+.primary__button {
+    padding: .8rem 1.5rem;
+    background: rgba(226, 12, 12, 0.50);
+    border-radius: 3.125rem;
+    color: var(--bg-white);
+}
+
+.primary__button:hover {
+    font-weight: normal;
+    letter-spacing: normal;
+    background: #E20C0C;
+}
+
+h1 {
+    font-family: "STIX Two Text", serif;
+    font-weight: 500;
+    font-size: var(--fs-xxxl);
+    line-height: 3.0625rem;
+}
+
+.red-caps {
+    font-family: "Roboto", sans-serif;
+    font-size: var(--fs-base);
+    font-variant: all-small-caps;
+    color: var(--primary-red, #E20C0C);
+}
+
+.stamp-text {
+    font-family: "Rubik Dirt", serif;
+    font-weight: 400;
+    color: var(--primary-red, #E20C0C);
+    opacity: 0.34;
+    mix-blend-mode: multiply;
+    font-size: var(--fs-xxxl);
+    line-height: 3.47069rem;
+}
+
+.vertical-text {
+    transform: rotate(-90deg);
+}
+
+/* --- Header styles --- */
+.header__container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.header__title {
+    margin-right: -1rem;
+}
+
+.header__container__img {
+    display: grid;
+    grid-template-columns: 2fr .2fr .2fr 1fr;
+    min-width: 200vw;
+    margin-bottom: 1rem;
+}
+
+.header__img__paper {
+    box-shadow: var(--shadow-tabloid);
+    transform: rotate(-15.972deg);
+    margin-right: 2rem;
+    margin-top: -2.5rem;
+    grid-column: 1 / span 1;
+    grid-row: 1;
+    z-index: 10;
+}
+
+.header__img__passport {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    transform: rotate(70.332deg);
+    box-shadow: var(--shadow-base);
+    align-self: end;
+    justify-self: end;
+    margin-bottom: 4rem;
+    margin-right: -3rem;
+    border-radius: 3.125rem;
+}
+
+.header__img__stamp {
+    grid-column: 3 / span 1;
+    grid-row: 1;
+    transform: rotate(-12.553deg);
+    width: 11.21388rem;
+    margin-top: 4rem;
+    margin-left: 1rem;
+margin-right: -2rem;
+}
+
+.header__secondtitle {
+    grid-column: 4 / span 1;
+    grid-row: 1;
+    min-width: max-content;
+    margin-top: 5rem;
+
+    justify-self: end;
+}
+
+.header__red-caps {
+   text-align: right;
+   align-self: end;
+   
+}
+
+.header__paragraph{
+    max-width: 18rem;
+    margin: 2rem 0;
+}
+
