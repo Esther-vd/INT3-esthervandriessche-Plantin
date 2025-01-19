@@ -47,3 +47,16 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+button {
+    /* reset button styles */
+        border: none;
+        margin: 0;
+        padding: 0;
+        font-size: 1rem;
+        line-height: 1;
+        background: transparent;
+        appearance: none;
+        color: black;
+        /*safari*/
+}
