@@ -578,7 +578,11 @@ p+p {
     }
 
     .header__secondtitle {
-        line-height: 4.375rem;
+        line-height: 6.375rem;
+    }
+
+    .header__title--inside {
+        line-height: 6.375rem;
     }
 
     .header__title--inside {
