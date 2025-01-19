@@ -13,6 +13,10 @@ img {
     height: auto;
 }
 
+.hide{
+    display: none;
+}
+
 :root {
     --black: #1B1B1B;
     --bg-white: #FFFFFB;
