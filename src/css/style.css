@@ -34,13 +34,13 @@ picture {
     --bg-dark-white: #F2EEE2;
     --primary-red: #E20C0C;
 
-    --fs-sm: clamp(0.9rem, 0.06vi + 0.89rem, 0.94rem);
+    --fs-sm: clamp(0.9rem, -0.06vi + 0.91rem, 0.86rem);
     --fs-base: clamp(1.13rem, 0.19vi + 1.08rem, 1.25rem);
-    --fs-md: clamp(1.41rem, 0.4vi + 1.31rem, 1.67rem);
-    --fs-lg: clamp(1.76rem, 0.71vi + 1.59rem, 2.22rem);
-    --fs-xl: clamp(2.2rem, 1.16vi + 1.91rem, 2.96rem);
-    --fs-xxl: clamp(2.75rem, 1.83vi + 2.3rem, 3.95rem);
-    --fs-xxxl: clamp(4rem, 2.79vi + 2.75rem, 8rem);
+    --fs-md: clamp(1.41rem, 0.62vi + 1.26rem, 1.81rem);
+    --fs-lg: clamp(1.76rem, 1.33vi + 1.43rem, 2.63rem);
+    --fs-xl: clamp(2.2rem, 2.46vi + 1.6rem, 3.81rem);
+    --fs-xxl: clamp(2.75rem, 4.23vi + 1.71rem, 5.53rem);
+    --fs-xxxl: clamp(3.43rem, 6.98vi + 1.73rem, 8.01rem);
 
     --shadow-base: 84.725px 53.119px 80px 0px rgba(0, 0, 0, 0.07),
         54.915px 34.429px 46.852px 0px rgba(0, 0, 0, 0.05),
@@ -56,6 +56,7 @@ picture {
         17.661px 19.623px 32.338px 0px rgba(0, 0, 0, 0.06),
         12.349px 13.721px 16.215px 0px rgba(0, 0, 0, 0.05),
         9.527px 10.585px 7.831px 0px rgba(0, 0, 0, 0.03);
+
     --shadow-tabloid: -3px 3px 0px 0px #767266,
         -3px 2px 3.5px 0px #746F63,
         84.725px 53.119px 80px 0px rgba(0, 0, 0, 0.07),
@@ -89,7 +90,7 @@ main {
     overflow-y: visible;
 }
 
-/* --- hamburger menu --- */
+/* --- hamburger menu ---------------------------------------------------------------------------- */
 .nav__logo__img {
     max-width: 4rem;
 }
@@ -146,6 +147,7 @@ nav {
     letter-spacing: -.1px;
 }
 
+/* hamburger responsive */
 @media screen and (min-width: 50em) {
     nav {
         grid-template-columns: min-content auto;
@@ -196,7 +198,7 @@ nav {
     }
 }
 
-/* --- General styles --- */
+/* --- General styles --------------------------------------------------------------------------------------- */
 .primary__button {
     padding: .8rem 1.5rem;
     background: rgba(226, 12, 12, 0.50);
@@ -214,7 +216,15 @@ h1 {
     font-family: "STIX Two Text", serif;
     font-weight: 500;
     font-size: var(--fs-xxxl);
-    line-height: 3.0625rem;
+    line-height: 3.5rem;
+}
+
+h2{
+    font-family: "STIX Two Text", serif;
+    font-weight: 500;
+    line-height: 99%;
+    font-size: var(--fs-xl);
+    margin: 1rem 0;
 }
 
 .red-caps {
@@ -224,6 +234,18 @@ h1 {
     color: var(--primary-red, #E20C0C);
 }
 
+.white-caps {
+    font-family: "Roboto", sans-serif;
+    font-size: var(--fs-base);
+    font-variant: all-small-caps;
+    color: var(--bg-white);
+}
+
+.p__emphasis{
+    background-color: rgba(226, 12, 12, 0.4);
+}
+
+
 .stamp-text {
     font-family: "Rubik Dirt", serif;
     font-weight: 400;
@@ -231,14 +253,18 @@ h1 {
     opacity: 0.34;
     mix-blend-mode: multiply;
     font-size: var(--fs-xxxl);
-    line-height: 3.47069rem;
+    line-height: 3.5rem;
 }
 
 .vertical-text {
     transform: rotate(-90deg);
 }
 
-/* --- Header styles --- */
+p + p{
+    margin-top: 2rem;
+}
+
+/* --- Header styles --------------------------------------------------------------------------------------- */
 .header__container {
     display: flex;
     flex-flow: column nowrap;
@@ -322,6 +348,7 @@ h1 {
     display: none;
 }
 
+/* header responsive */
 @media screen and (min-width: 30em) {
     .header__container__img {
         min-width: 100vw;
@@ -490,6 +517,22 @@ h1 {
     }
 
     .header__secondtitle {
-        line-height: 4.375rem;
+        line-height: 6.375rem;
+    }
+
+    .header__title--inside {
+        line-height: 6.375rem;
     }
 }
+
+/* --- introduction ------------------------------------------------------------------------------------------------- */
+.introduction__img{
+    transform: rotate(9.25deg);
+    box-shadow: var(--shadow-base);
+    border-radius: 3.125rem;
+    margin: 1rem;
+    margin-bottom: 2rem;
+}
+
+
+
