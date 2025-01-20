@@ -9,8 +9,7 @@ html {
     box-sizing: inherit;
 }
 
-img,
-picture {
+img {
     max-inline-size: 100%;
     block-size: auto;
     display: block
@@ -468,6 +467,7 @@ p+p {
     }
 }
 
+/* responsive header */
 @media screen and (min-width: 50em) {
     .header__paragraph--outside {
         display: none;
