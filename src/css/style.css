@@ -1,5 +1,6 @@
 html {
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 *,
@@ -8,8 +9,7 @@ html {
     box-sizing: inherit;
 }
 
-img,
-picture {
+img {
     max-inline-size: 100%;
     block-size: auto;
     display: block
@@ -66,6 +66,7 @@ picture {
         6.904px 4.328px 6.519px 0px rgba(0, 0, 0, 0.03),
         1.569px 0.984px 3.148px 0px rgba(0, 0, 0, 0.02);
 
+    --shadow-base-reverse: -84.725px -53.119px 80px 0px rgba(0, 0, 0, 0.07), -54.915px -34.429px 46.852px 0px rgba(0, 0, 0, 0.05), -32.635px -20.461px 25.481px 0px rgba(0, 0, 0, 0.04), -16.945px -10.624px 13px 0px rgba(0, 0, 0, 0.04), -6.904px -4.328px 6.519px 0px rgba(0, 0, 0, 0.03), -1.569px -0.984px 3.148px 0px rgba(0, 0, 0, 0.02);
     --max-page-width: 90rem;
 }
 
@@ -73,15 +74,21 @@ body {
     font-family: "Roboto Condensed", sans-serif;
     font-size: var(--fs-base);
     color: var(--black);
-    line-height: 125%;
+    line-height: 130%;
     max-width: var(--max-page-width);
+
+    background-color: var(--bg-medium-white);
     margin: 0 auto;
+        overflow-x: hidden;
+        padding: 0 1rem;
+        padding-top: .5rem;
+
 }
 
 p {
     max-width: 32rem;
 }
-
+/* 
 main {
     margin: 0 auto;
     overflow-x: hidden;
@@ -89,6 +96,13 @@ main {
     padding-top: .5rem;
     overflow-y: visible;
 }
+
+header{
+    margin: 0 auto;
+        padding: 0 1rem;
+        padding-top: .5rem;
+        overflow-y: visible;
+} */
 
 /* --- hamburger menu ---------------------------------------------------------------------------- */
 .nav__logo__img {
@@ -234,11 +248,13 @@ h2 {
     color: var(--primary-red, #E20C0C);
 }
 
-.white-caps {
+.white_caps {
     font-family: "Roboto", sans-serif;
     font-size: var(--fs-base);
     font-variant: all-small-caps;
     color: var(--bg-white);
+    text-align: center;
+    line-height: 93%;
 }
 
 .p__emphasis {
@@ -257,11 +273,32 @@ h2 {
 }
 
 .vertical-text {
-    transform: rotate(-90deg);
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    white-space: nowrap;
+    display: block;
 }
 
 p+p {
     margin-top: 2rem;
+}
+
+.receipt {
+    box-shadow: var(--shadow-base);
+    z-index: 10;
+}
+
+.post-it {
+    background-color: #EFCFC1;
+    color: var(--black);
+    font-family: "IM Fell Double Pica", serif;
+    font-size: var(--fs-sm);
+    width: 11rem;
+    height: 11rem;
+    padding: 1rem;
+    line-height: 130%;
+    box-shadow: var(--shadow-post-it);
+    transform: rotate(-12.747deg);
 }
 
 /* --- Header styles --------------------------------------------------------------------------------------- */
@@ -315,10 +352,11 @@ p+p {
 }
 
 .header__secondtitle {
-    grid-column: 4 / span 1;
+    grid-column: 3 / span 1;
     grid-row: 1;
     min-width: max-content;
-    margin-top: 5rem;
+    margin-top: 0rem;
+    align-self: end;
     justify-self: end;
 }
 
@@ -347,8 +385,6 @@ p+p {
 .header__red-caps--inside {
     display: none;
 }
-
-/* header responsive */
 @media screen and (min-width: 30em) {
     .header__container__img {
         min-width: 100vw;
@@ -401,6 +437,7 @@ p+p {
     }
 }
 
+/* responsive header */
 @media screen and (min-width: 50em) {
     .header__paragraph--outside {
         display: none;
@@ -487,9 +524,8 @@ p+p {
         margin-bottom: -5rem;
     }
 
-    main {
-        overflow: visible;
-    }
+    
+
 
 }
 
@@ -517,7 +553,7 @@ p+p {
     }
 
     .header__secondtitle {
-        line-height: 6.375rem;
+        line-height: 4.375rem;
     }
 
     .header__title--inside {
@@ -539,26 +575,214 @@ p+p {
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
+    margin-top: 2rem;
 }
 
 @media screen and (min-width: 50em) {
     .introduction__container {
         margin-top: 3rem;
-            flex-flow: row-reverse nowrap;
-        }
-    
-        .introduction__img {
-            margin: 3rem;
-            max-width: 20rem;
-        }
+        flex-flow: row-reverse nowrap;
+    }
+
+    .introduction__img {
+        margin: 3rem;
+        max-width: 20rem;
+    }
 }
 
 @media screen and (min-width: 65em) {
     .introduction__container {
-            gap: 4rem;
-        }
+        gap: 4rem;
+    }
+
     .introduction__img {
         max-width: 30rem;
         margin: 1rem;
     }
 }
+
+/* --- Achievements ------------------------------------------------------------------------------------------------ */
+
+.achievements__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: .5fr 1fr .9fr 1fr;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.achievements__container__title {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.achievements__container__fill {
+    grid-column: 1;
+    grid-row: 4;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.achievements__receipt__left {
+    transform: rotate(-39.091deg);
+    grid-column: 1;
+    grid-row: 2 / span 2;
+    position: absolute;
+    display: none;
+    /* fix */
+}
+
+.achievements__receipt__right {
+    transform: rotate(-135.254deg);
+    box-shadow: var(--shadow-base-reverse);
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    align-self: end;
+    position: absolute;
+    display: none;
+    /* fix */
+}
+
+.achievements__red-caps {
+    align-self: end;
+}
+
+/* --- printer section -------------------------------------------------------------------------------------------- */
+.printer__container {
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 2rem 0;
+    gap: 1rem;
+}
+
+.printer__red-caps {
+    align-self: flex-end;
+}
+
+.printer__container__img {
+    display: grid;
+    align-items: center;
+}
+
+.printer__base {
+    mix-blend-mode: multiply;
+    grid-column: 1;
+    grid-row: 1;
+    margin-left: -6rem;
+    margin-right: 5rem;
+}
+
+.printer__book__container {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    gap: .5rem;
+}
+
+.printer__title{
+    font-family: "STIX Two Text";
+    font-weight: 700;
+    line-height: 110%;
+    font-size: var(--fs-md);
+    max-width: 19rem;
+}
+
+/* css for the book pages */
+.printer__book {
+    display: grid;
+    place-items: center;
+    max-width: 25vw;
+}
+
+.printer__book__page {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.printer__book__text {
+    grid-column: 1;
+    grid-row: 1;
+    padding: .5rem;
+}
+
+/* --- section 25000 ----------------------------------------------------------------------------------------------- */
+.receipt__transition__container {
+    display: grid;
+    position: relative;
+    height: 50vh;
+    margin: 4rem 0;
+    justify-items: center;
+}
+
+.receipt__transition {
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+    box-shadow: var(--shadow-base-reverse);
+    transform-origin: center;
+    transform: translateY(-50%);
+    width: 20rem;
+}
+
+.receipt__transition__bottom {
+    transform: rotate(-75.047deg) translate(150%);
+
+}
+
+.receipt__transition__top {
+    transform: rotate(-97.06deg) translate(150%);
+}
+
+.number__container {
+    background-color: var(--black);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    color: var(--bg-white);
+    margin: -10rem -1rem;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.number__white-caps {
+    max-width: 13rem;
+}
+
+.number__title {
+    font-size: 6rem;
+    font-family: "IM Fell Double Pica", serif;
+    line-height: 4.90513rem;
+    margin: 1rem 0;
+    margin-top: 3rem;
+}
+
+.number__post-it {
+    position: absolute;
+    left: 25%;
+}
+
+/* --- stamp section -------------------------------------------------------------------------------------------- */
+.stamps__container{
+    margin: 3rem 0;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.stamps__red-caps{
+    writing-mode: vertical-rl;
+}
+
+.stamps__stamp-text{
+    display: none;
+}
+
+/* --- family section ------------------------------------------------------------------------------------------- */
+.family__container{
+    margin: 5rem 0;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
