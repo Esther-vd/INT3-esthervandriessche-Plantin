@@ -79,15 +79,16 @@ body {
 
     background-color: var(--bg-medium-white);
     margin: 0 auto;
-        overflow-x: hidden;
-        padding: 0 1rem;
-        padding-top: .5rem;
+    overflow-x: hidden;
+    padding: 0 1rem;
+    padding-top: .5rem;
 
 }
 
 p {
     max-width: 32rem;
 }
+
 /* 
 main {
     margin: 0 auto;
@@ -245,7 +246,8 @@ h2 {
     font-family: "Roboto", sans-serif;
     font-size: var(--fs-base);
     font-variant: all-small-caps;
-    color: var(--primary-red, #E20C0C);
+    color: var(--primary-red, #E20C0C); 
+    text-align: center;
 }
 
 .white_caps {
@@ -298,7 +300,6 @@ p+p {
     padding: 1rem;
     line-height: 130%;
     box-shadow: var(--shadow-post-it);
-    transform: rotate(-12.747deg);
 }
 
 /* --- Header styles --------------------------------------------------------------------------------------- */
@@ -385,6 +386,7 @@ p+p {
 .header__red-caps--inside {
     display: none;
 }
+
 @media screen and (min-width: 30em) {
     .header__container__img {
         min-width: 100vw;
@@ -524,7 +526,7 @@ p+p {
         margin-bottom: -5rem;
     }
 
-    
+
 
 
 }
@@ -679,7 +681,7 @@ p+p {
     gap: .5rem;
 }
 
-.printer__title{
+.printer__title {
     font-family: "STIX Two Text";
     font-weight: 700;
     line-height: 110%;
@@ -762,27 +764,142 @@ p+p {
 .number__post-it {
     position: absolute;
     left: 25%;
+    transform: rotate(-12.747deg);
 }
 
 /* --- stamp section -------------------------------------------------------------------------------------------- */
-.stamps__container{
+.stamps__container {
     margin: 3rem 0;
     display: grid;
     grid-template-rows: 1fr 1fr;
 }
 
-.stamps__red-caps{
+.stamps__red-caps {
     writing-mode: vertical-rl;
 }
 
-.stamps__stamp-text{
+.stamps__stamp-text {
     display: none;
 }
 
 /* --- family section ------------------------------------------------------------------------------------------- */
-.family__container{
+.family__container {
     margin: 5rem 0;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr auto;
+    gap: 2rem;
 }
 
+.family__container__img {
+    position: relative;
+
+}
+
+.family__scrap {
+    position: absolute;
+    transform: rotate(53.69deg);
+    max-width: 15rem;
+    right: -50%;
+    bottom: -20%;
+}
+
+.family__daughter {
+    position: absolute;
+    transform: rotate(13.711deg);
+    max-width: 12rem;
+    right: 0;
+    top: 0;
+    z-index: -10;
+}
+
+.family__heart {
+    position: absolute;
+    transform: rotate(-21.388deg);
+    max-width: 20rem;
+    bottom: 0;
+    left: -50%;
+    bottom: -10%;
+    z-index: 10;
+}
+
+.family__post-it {
+    position: absolute;
+    transform: rotate(6.179deg);
+    left: 10%;
+}
+
+.family__red-caps {
+    display: none;
+}
+
+.family__container__fill{
+    margin-bottom: 3rem;
+}
+
+/* --- map section --------------------------------------------------------------------------------------------- */
+.map__container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 3rem;
+    position: relative;
+}
+
+.map__img {
+    grid-row: 1;
+    grid-column: 1;
+    margin: -5rem;
+    position: relative;
+}
+
+.map__img::after{
+    content: url(../../assets/svg/stamp-antwerp.svg);
+    position: absolute;
+    right: 15%;
+    bottom: 0;
+    transform: rotate(-12.464deg);
+    width: 7rem;
+    mix-blend-mode: multiply;
+}
+/* 
+.map__dart__circle {
+    grid-row: 1;
+    grid-column: 1;
+    border-radius: 50%;
+    background-color: var(--black);
+    width: 0.50175rem;
+    height: 0.50175rem;
+    position: absolute;
+    right: 32%;
+    top: 13.5%;
+} */
+
+.map__dart {
+    position: absolute;
+    grid-row: 1;
+    grid-column: 1;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1) scale(0.7);
+    right: 20%;
+    top: -15%;
+}
+
+
+
+.map__red-caps {
+    display: none;
+}
+
+/* --- passport section ------------------------------------------------------------------------------------------ */
+.pass__container{
+    margin-top: 3rem;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.pass__bigtext{
+    text-align: center;
+    font-family: "IM Fell Double Pica", serif;
+    line-height: 110%;
+    font-size: var(--fs-xxl);
+}
