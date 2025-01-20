@@ -246,7 +246,7 @@ h2 {
     font-family: "Roboto", sans-serif;
     font-size: var(--fs-base);
     font-variant: all-small-caps;
-    color: var(--primary-red, #E20C0C); 
+    color: var(--primary-red, #E20C0C);
     text-align: center;
 }
 
@@ -832,7 +832,7 @@ p+p {
     display: none;
 }
 
-.family__container__fill{
+.family__container__fill {
     margin-bottom: 3rem;
 }
 
@@ -851,7 +851,7 @@ p+p {
     position: relative;
 }
 
-.map__img::after{
+.map__img::after {
     content: url(../../assets/svg/stamp-antwerp.svg);
     position: absolute;
     right: 15%;
@@ -860,6 +860,7 @@ p+p {
     width: 7rem;
     mix-blend-mode: multiply;
 }
+
 /* 
 .map__dart__circle {
     grid-row: 1;
@@ -890,16 +891,138 @@ p+p {
 }
 
 /* --- passport section ------------------------------------------------------------------------------------------ */
-.pass__container{
+.pass__container {
     margin-top: 3rem;
     display: grid;
     align-items: center;
     justify-content: center;
 }
 
-.pass__bigtext{
+.pass__bigtext {
     text-align: center;
     font-family: "IM Fell Double Pica", serif;
     line-height: 110%;
     font-size: var(--fs-xxl);
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.pass__id {
+    grid-column: 1;
+    grid-row: 2 / span 2;
+    max-width: 14rem;
+    transform: rotate(29.915deg);
+    align-self: center;
+    justify-self: end;
+    margin-bottom: 6rem;
+}
+
+.pass__img {
+    display: grid;
+    transform: rotate(5.293deg);
+    grid-column: 1;
+    grid-row: 2 / span 2;
+    place-items: center;
+}
+
+.pass__img__closed {
+    grid-column: 1;
+    grid-row: 1;
+    transform: scale(.5);
+}
+
+.pass__img__open {
+    grid-column: 1;
+    grid-row: 1;
+    transform: scale(.9);
+}
+
+/* --- colour section -------------------------------------------------------------------------------------------- */
+.colour__container__article {
+    display: grid;
+    width: 150vw;
+    margin-bottom: 4rem;
+    grid-template-columns: 2fr 1fr;
+}
+
+.colour__container__article__interactive {
+        grid-column: 1;
+            grid-row: 1;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-items: stretch;
+    gap: 2rem;
+    margin-right: 2rem; 
+}
+
+.colour__container__article__c {
+    grid-column: 1;
+        grid-row: 1;
+    display: grid;
+    justify-items: stretch;
+    position: relative;
+    transform: rotate(-4.035deg);
+        mix-blend-mode: multiply;
+         padding: .5rem;
+}
+
+.colour__container__options {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    justify-content: space-evenly ;
+}
+
+.colour__canvas {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+}
+
+.colour__drawing {
+    grid-column: 1;
+    grid-row: 1;
+    mix-blend-mode: multiply;
+}
+
+.colour__newspaper{
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    margin: -3rem;
+    margin-left: -2rem;
+    margin-top: -4rem;
+}
+
+.colour__circle{
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    border: var(--black) solid 6px;
+    flex-shrink: 1;
+}
+
+.colour__option{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.colour__circle--yellow{
+    background-color: #FFE69C;
+}
+
+.colour__circle--blue {
+    background-color: #97B7DB;
+}
+
+.colour__circle--pink {
+    background-color: #B47072;
+}
+
+.colour__circle--green {
+    background-color: #AFB471;
 }
