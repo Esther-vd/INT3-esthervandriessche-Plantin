@@ -74,11 +74,20 @@ body {
     overflow-x: hidden;
     padding: 0 1rem;
     padding-top: .5rem;
-
 }
 
 p {
     max-width: 32rem;
+}
+
+/* prevent horizontall scroll on mobile */
+
+html, body {
+    overflow-x: hidden;
+}
+
+body {
+    position: relative
 }
 
 /* 
@@ -292,6 +301,14 @@ p+p {
     padding: 1rem;
     line-height: 130%;
     box-shadow: var(--shadow-post-it);
+}
+
+.black-bg{
+    background-color: var(--black);
+    color: var(--bg-white);
+    min-width: 100vw;
+    margin-left: -1rem;
+    padding: 3rem 1rem;
 }
 
 /* --- Header styles --------------------------------------------------------------------------------------- */
@@ -517,10 +534,6 @@ p+p {
         margin-right: -5rem;
         margin-bottom: -5rem;
     }
-
-
-
-
 }
 
 @media screen and (min-width: 60em) {
@@ -596,7 +609,6 @@ p+p {
 }
 
 /* --- Achievements ------------------------------------------------------------------------------------------------ */
-
 .achievements__container {
     display: grid;
     grid-template-columns: 1fr;
@@ -776,10 +788,11 @@ p+p {
 
 /* --- family section ------------------------------------------------------------------------------------------- */
 .family__container {
-    margin: 5rem 0;
+    margin: 3rem 0;
     display: grid;
     grid-template-rows: 1fr 1fr auto;
     gap: 2rem;
+    margin-bottom: 5rem;
 }
 
 .family__container__img {
@@ -938,31 +951,31 @@ p+p {
 }
 
 .colour__container__article__interactive {
-        grid-column: 1;
-            grid-row: 1;
+    grid-column: 1;
+    grid-row: 1;
     display: grid;
     grid-template-rows: auto 1fr;
     justify-items: stretch;
     gap: 2rem;
-    margin-right: 2rem; 
+    margin-right: 2rem;
 }
 
 .colour__container__article__c {
     grid-column: 1;
-        grid-row: 1;
+    grid-row: 1;
     display: grid;
     justify-items: stretch;
     position: relative;
     transform: rotate(-4.035deg);
-        mix-blend-mode: multiply;
-         padding: .5rem;
+    mix-blend-mode: multiply;
+    padding: .5rem;
 }
 
 .colour__container__options {
     grid-column: 1;
     grid-row: 2;
     display: flex;
-    justify-content: space-evenly ;
+    justify-content: space-evenly;
 }
 
 .colour__canvas {
@@ -980,7 +993,7 @@ p+p {
     mix-blend-mode: multiply;
 }
 
-.colour__newspaper{
+.colour__newspaper {
     grid-column: 1 / span 2;
     grid-row: 1;
     margin: -3rem;
@@ -988,22 +1001,22 @@ p+p {
     margin-top: -4rem;
 }
 
-.colour__circle{
+.colour__circle {
     border-radius: 50%;
-    width: 4rem;
-    height: 4rem;
-    border: var(--black) solid 6px;
+    width: 3rem;
+    height: 3rem;
+    border: var(--black) solid 4px;
     flex-shrink: 1;
 }
 
-.colour__option{
+.colour__option {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
 }
 
-.colour__circle--yellow{
+.colour__circle--yellow {
     background-color: #FFE69C;
 }
 
@@ -1018,3 +1031,148 @@ p+p {
 .colour__circle--green {
     background-color: #AFB471;
 }
+
+.colour__circle--clear {
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+}
+
+/* --- pitfall -------------------------------------------------------------------------------------------------- */
+.pitfall__container {
+    margin: 3rem 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto 1fr 1fr 1fr auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.pitfall__title {
+    grid-column: 1 / span 3;
+    grid-row: 1;
+}
+
+.pitfall__photo {
+    grid-column: 1 / span 2;
+    grid-row: 3 / span 2;
+    align-self: end;
+    justify-self: start;
+    transform: rotate(-10.629deg);
+    max-width: 10rem;
+    position: relative;
+}
+
+.pitfall__photo::after {
+    content: "";
+    background-image: url(../../assets/img/ink-splatter.png);
+    position: absolute;
+    right: -100%;
+    bottom: 0;
+    background-blend-mode: multiply;
+    width: 150%;
+    height: 150%;
+    background-size: cover;
+    background-position: center;
+}
+
+.pitfall__dart {
+    grid-column: 2 / span 2;
+    grid-row: 2 / span 2;
+    align-self: start;
+    justify-self: start;
+    z-index: 10;
+}
+
+.pitfall__stamp-text {
+    grid-column: 1 / span 2;
+    grid-row: 4 / span 1;
+    align-self: end;
+    justify-self: start;
+    font-size: var(--fs-xxl);
+}
+
+.pitfall__p {
+    grid-column: 1 / span 3;
+    grid-row: 5 / span 1;
+}
+
+/* --- pamphlet section ---------------------------------------------------------------------------------------- */
+.pamphlets__container {
+    display: grid;
+    grid-template-columns: .5fr .5fr .5fr .5fr ;
+    grid-template-rows: auto auto 1fr .2fr .2fr auto;
+}
+
+.pamphlets__title {
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 1;
+}
+
+.pamphlets__p {
+    grid-column: 1 / span 4;
+    grid-row: 2 / span 1;
+    margin-bottom: 4rem;
+}
+
+.pamphlets__greenimg {
+    grid-column: 2 / span 2;
+    grid-row: 3 / span 3;
+    transform: rotate(21.713deg);
+    align-self: end;
+    z-index: 10;
+}
+
+.pamphlets__pinkimg {
+    grid-column: 2 / span 3;
+    grid-row: 3 / span 2;
+    transform: rotate(7.161deg);
+    justify-self: end;
+}
+
+.pamphlets__blueimg {
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 4;
+    transform: rotate(-13.169deg);
+    align-self: end;
+    justify-self: end;
+}
+
+.pamphlets__p--rightalign {
+    grid-column: 1 / span 4;
+    grid-row: 6 / span 1;
+    margin-top: 3rem;
+}
+
+/* --- shake section -------------------------------------------------------------------------------------------- */
+.shake__caps__desktop{
+    display: none;
+}
+
+.shake__container{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.shake__big-text{
+    text-align: center;
+    font-family: "IM Fell Double Pica", serif;
+    font-size: var(--fs-xl);
+    line-height: 125%;
+}
+
+
+/* --- more museum section -------------------------------------------------------------------------------------- */
+.more__container__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2rem 0;
+
+}
+
+/* --- stories section ------------------------------------------------------------------------------------------ */
