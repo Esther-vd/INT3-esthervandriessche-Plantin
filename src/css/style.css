@@ -300,6 +300,7 @@ p+p {
     z-index: 10;
 }
 
+
 .post-it {
     background-color: #EFCFC1;
     color: var(--black);
@@ -467,7 +468,6 @@ p+p {
     }
 }
 
-/* responsive header */
 @media screen and (min-width: 50em) {
     .header__paragraph--outside {
         display: none;
@@ -1685,6 +1685,7 @@ p+p {
 .shake__caps__desktop {
     display: none;
 }
+
 
 .shake__container {
     display: flex;
