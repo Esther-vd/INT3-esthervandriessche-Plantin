@@ -69,7 +69,7 @@ img {
     --shadow-base-reverse: -84.725px -53.119px 80px 0px rgba(0, 0, 0, 0.07), -54.915px -34.429px 46.852px 0px rgba(0, 0, 0, 0.05), -32.635px -20.461px 25.481px 0px rgba(0, 0, 0, 0.04), -16.945px -10.624px 13px 0px rgba(0, 0, 0, 0.04), -6.904px -4.328px 6.519px 0px rgba(0, 0, 0, 0.03), -1.569px -0.984px 3.148px 0px rgba(0, 0, 0, 0.02);
     ---dropshadow-base: drop-shadow(84.725px 53.119px 80px rgba(0, 0, 0, 0.07)) drop-shadow(54.915px 34.429px 46.852px rgba(0, 0, 0, 0.05)) drop-shadow(32.635px 20.461px 25.481px rgba(0, 0, 0, 0.04)) drop-shadow(16.945px 10.624px 13px rgba(0, 0, 0, 0.04)) drop-shadow(6.904px 4.328px 6.519px rgba(0, 0, 0, 0.03)) drop-shadow(1.569px 0.984px 3.148px rgba(0, 0, 0, 0.02));
 
-    --max-page-width: 90rem;
+    --max-page-width: 100rem;
 }
 
 body {
@@ -77,13 +77,14 @@ body {
     font-size: var(--fs-base);
     color: var(--black);
     line-height: 130%;
-    max-width: var(--max-page-width);
+    /* max-width: var(--max-page-width); */
 
     background-color: var(--bg-medium-white);
     margin: 0 auto;
     overflow-x: hidden;
     padding: 0 1rem;
     padding-top: .5rem;
+    position: relative
 }
 
 p {
@@ -97,9 +98,6 @@ body {
     overflow-x: hidden;
 }
 
-body {
-    position: relative
-}
 
 /* 
 main {
@@ -116,6 +114,11 @@ header{
         padding-top: .5rem;
         overflow-y: visible;
 } */
+
+.center-with-max{
+    max-width: var(--max-page-width);
+    margin: 0 auto;
+}
 
 /* --- hamburger menu ---------------------------------------------------------------------------- */
 .nav__logo__img {
@@ -221,7 +224,7 @@ nav {
     }
 
     nav {
-        margin: 2rem 5rem;
+        margin: 2rem 0;
     }
 }
 
@@ -554,7 +557,6 @@ p+p {
         min-height: 80vh;
         grid-template-columns: 2fr 1fr 3fr;
         grid-template-rows: 1fr .5fr;
-        padding: 0 8rem;
     }
 
     .header__img__paper {
@@ -616,6 +618,10 @@ p+p {
     .introduction__img {
         max-width: 30rem;
         margin: 1rem;
+    }
+
+    body {
+        padding: 0 5rem;
     }
 }
 
@@ -692,16 +698,16 @@ p+p {
         justify-self: center;
     }
 
-    .achievements__receipt__left{
+    .achievements__receipt__left {
         grid-row: 2 / span 2;
         grid-column: 1 / span 1;
     }
 
-         .achievements__receipt__right{
-             grid-row: 1 / span 1;
-             grid-column: 3 / span 1;
-             align-self: center;
-         }
+    .achievements__receipt__right {
+        grid-row: 1 / span 1;
+        grid-column: 3 / span 1;
+        align-self: center;
+    }
 }
 
 /* --- printer section -------------------------------------------------------------------------------------------- */
@@ -741,7 +747,7 @@ p+p {
     font-weight: 700;
     line-height: 110%;
     font-size: var(--fs-md);
-    max-width: 19rem;
+    max-width: 30rem;
 }
 
 /* css for the book pages */
@@ -762,8 +768,42 @@ p+p {
     padding: .5rem;
 }
 
-@media screen and (min-width : 60em){
-    
+.printer__book__desktop {
+    display: none;
+}
+
+@media screen and (min-width : 50em) {
+    .printer__base {
+        max-width: 40rem;
+    }
+
+    .printer__book__desktop {
+        display: grid;
+    }
+}
+
+@media screen and (min-width : 60em) {
+    .printer__title {
+        font-size: var(--fs-lg);
+        font-weight: normal;
+        line-height: 110%;
+        max-width: 50rem;
+        grid-row: 1;
+    }
+
+    .printer__red-caps {
+        grid-row: 1;
+    }
+
+    .printer__container {
+        margin: 2rem;
+        margin-bottom: 5rem;
+    }
+
+    .printer__container__img {
+        margin-left: 5rem;
+    }
+
 }
 
 /* --- section 25000 ----------------------------------------------------------------------------------------------- */
@@ -824,6 +864,34 @@ p+p {
     position: absolute;
     left: 25%;
     transform: rotate(-12.747deg);
+}
+
+.receipt__transition__container---reverse {
+    transform: scaleY(-1);
+}
+
+@media screen and (min-width : 50em) {
+    .number__title {
+        margin-top: 1rem;
+    }
+
+    .number__post-it {
+        left: 40%;
+    }
+}
+
+@media screen and (min-width : 65em) {
+    .number__container {
+        margin-left: -5rem;
+    }
+
+    .receipt__transition__container {
+        margin: 6rem;
+    }
+
+    .number__white-caps {
+        max-width: none;
+    }
 }
 
 /* --- stamp section -------------------------------------------------------------------------------------------- */
