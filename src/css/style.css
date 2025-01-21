@@ -59,6 +59,13 @@ img {
         1.569px 0.984px 3.148px 0px rgba(0, 0, 0, 0.02);
 
     --shadow-base-reverse: -84.725px -53.119px 80px 0px rgba(0, 0, 0, 0.07), -54.915px -34.429px 46.852px 0px rgba(0, 0, 0, 0.05), -32.635px -20.461px 25.481px 0px rgba(0, 0, 0, 0.04), -16.945px -10.624px 13px 0px rgba(0, 0, 0, 0.04), -6.904px -4.328px 6.519px 0px rgba(0, 0, 0, 0.03), -1.569px -0.984px 3.148px 0px rgba(0, 0, 0, 0.02);
+    ---dropshadow-base: drop-shadow( 84.725px 53.119px 80px  rgba(0, 0, 0, 0.07)) 
+        drop-shadow( 54.915px 34.429px 46.852px  rgba(0, 0, 0, 0.05))
+        drop-shadow(32.635px 20.461px 25.481px  rgba(0, 0, 0, 0.04))
+        drop-shadow(16.945px 10.624px 13px  rgba(0, 0, 0, 0.04))
+        drop-shadow( 6.904px 4.328px 6.519px  rgba(0, 0, 0, 0.03))
+        drop-shadow(1.569px 0.984px 3.148px  rgba(0, 0, 0, 0.02)) ;
+    
     --max-page-width: 90rem;
 }
 
@@ -841,6 +848,10 @@ p+p {
     margin-bottom: 3rem;
 }
 
+.family__daughter img, .family__heart img, .family__scrap img{
+    filter: var(---dropshadow-base);
+}
+
 /* --- map section --------------------------------------------------------------------------------------------- */
 .map__container {
     display: grid;
@@ -889,6 +900,9 @@ p+p {
     top: -15%;
 }
 
+.map__dart img{
+    filter: var(---dropshadow-base);
+}
 
 
 .map__red-caps {
@@ -930,6 +944,10 @@ p+p {
     place-items: center;
 }
 
+.pass__img__closed img, .pass__img__open img, .pass__id img {
+    filter: var(---dropshadow-base);
+}
+
 .pass__img__closed {
     grid-column: 1;
     grid-row: 1;
@@ -941,6 +959,7 @@ p+p {
     grid-row: 1;
     transform: scale(.9);
 }
+
 
 /* --- colour section -------------------------------------------------------------------------------------------- */
 .colour__container__article {
@@ -1001,6 +1020,10 @@ p+p {
     margin-top: -4rem;
 }
 
+.colour__newspaper{
+    filter: var(---dropshadow-base);
+}
+
 .colour__circle {
     border-radius: 50%;
     width: 3rem;
@@ -1014,6 +1037,7 @@ p+p {
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
+    z-index: 10;
 }
 
 .colour__circle--yellow {
@@ -1052,6 +1076,7 @@ p+p {
 .pitfall__title {
     grid-column: 1 / span 3;
     grid-row: 1;
+    justify-self: center;
 }
 
 .pitfall__photo {
@@ -1062,6 +1087,11 @@ p+p {
     transform: rotate(-10.629deg);
     max-width: 10rem;
     position: relative;
+   
+}
+
+.pitfall__photo img, .pitfall__dart img{
+     filter: var(---dropshadow-base);
 }
 
 .pitfall__photo::after {
@@ -1173,6 +1203,59 @@ p+p {
     justify-content: space-between;
     margin: 2rem 0;
 
+}
+
+.more__container__img{
+    display: grid;
+    grid-template-columns: 1fr 1fr .5fr 1fr;
+    grid-template-rows: .2fr 1fr .2fr;
+    margin: 5rem 0;
+}
+
+.more__pamphlet{
+    grid-column: 1 / span 2;
+        grid-row: 1 / span 2;
+        transform: rotate(-10.513deg);
+    box-shadow: var(--shadow-base);
+}
+
+.more__family {
+    grid-column: 2 / span 3;
+    grid-row: 1 / span 2;
+    transform: rotate(10.586deg);
+    justify-self: end;
+    align-self: end;
+}
+
+.more__daughter {
+    grid-column: 3 / span 2;
+    grid-row: 2 / span 2;
+    transform: rotate(9.018deg);
+    align-self: end;
+
+}
+
+.more__family + img, .more__daughter + img {
+    filter: var(---dropshadow-base);
+}
+
+.more__cover {
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 3;
+    transform: rotate(-19.989deg);
+    justify-self: end;
+    align-self: end;
+    box-shadow: var(--shadow-tabloid);
+}
+
+.more__post-it {
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 1;
+    transform: rotate(0.972deg);
+    justify-self: end;
+        align-self: end;
+        text-align: center;
+        align-content: center;
 }
 
 /* --- stories section ------------------------------------------------------------------------------------------ */
