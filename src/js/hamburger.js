@@ -1,4 +1,4 @@
-const init = () => {
+const inithamburger = () => {
     const $navButton = document.querySelector('.nav__button');
     const $navList = document.querySelector('.nav__list');
     const $iconLink = document.querySelector('#iconlink');
@@ -47,4 +47,4 @@ const init = () => {
 
 
 
-init();
+inithamburger();
