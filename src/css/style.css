@@ -68,7 +68,7 @@ img {
 
     --shadow-base-reverse: -84.725px -53.119px 80px 0px rgba(0, 0, 0, 0.07), -54.915px -34.429px 46.852px 0px rgba(0, 0, 0, 0.05), -32.635px -20.461px 25.481px 0px rgba(0, 0, 0, 0.04), -16.945px -10.624px 13px 0px rgba(0, 0, 0, 0.04), -6.904px -4.328px 6.519px 0px rgba(0, 0, 0, 0.03), -1.569px -0.984px 3.148px 0px rgba(0, 0, 0, 0.02);
     ---dropshadow-base: drop-shadow(84.725px 53.119px 80px rgba(0, 0, 0, 0.07)) drop-shadow(54.915px 34.429px 46.852px rgba(0, 0, 0, 0.05)) drop-shadow(32.635px 20.461px 25.481px rgba(0, 0, 0, 0.04)) drop-shadow(16.945px 10.624px 13px rgba(0, 0, 0, 0.04)) drop-shadow(6.904px 4.328px 6.519px rgba(0, 0, 0, 0.03)) drop-shadow(1.569px 0.984px 3.148px rgba(0, 0, 0, 0.02));
-
+    --shadow-white: 35.206px 69.603px 129px 0px rgba(185, 185, 185, 0.07), 13.561px 26.81px 41.089px 0px rgba(185, 185, 185, 0.04), 7.041px 13.921px 20.962px 0px rgba(185, 185, 185, 0.04), 2.869px 5.671px 10.511px 0px rgba(185, 185, 185, 0.03), 0.652px 1.289px 5.076px 0px rgba(185, 185, 185, 0.02);
     --max-page-width: 80rem;
 }
 
@@ -304,7 +304,6 @@ p+p {
     z-index: 10;
 }
 
-
 .post-it {
     background-color: #EFCFC1;
     color: var(--black);
@@ -317,12 +316,21 @@ p+p {
     box-shadow: var(--shadow-post-it);
 }
 
+.pamphlet{
+    box-shadow: var(--shadow-white);
+}
+
 .black-bg {
     background-color: var(--black);
     color: var(--bg-white);
     min-width: 100vw;
-    margin-left: -1rem;
+    display: grid;
     padding: 3rem 1rem;
+}
+
+.center {
+    display: grid;
+    justify-content: center;
 }
 
 /* --- Header styles --------------------------------------------------------------------------------------- */
@@ -1366,8 +1374,8 @@ p+p {
 
 @media screen and (min-width : 30em) {
     .pitfall__photo {
-         margin-left: 5rem;
-        }
+        margin-left: 5rem;
+    }
 }
 
 @media screen and (min-width : 50em) {
@@ -1423,14 +1431,9 @@ p+p {
     grid-template-rows: auto auto 1fr .2fr .2fr auto;
 }
 
-.pamphlets__title {
+.pamphlets__container__title {
     grid-column: 1 / span 4;
     grid-row: 1 / span 1;
-}
-
-.pamphlets__p {
-    grid-column: 1 / span 4;
-    grid-row: 2 / span 1;
     margin-bottom: 4rem;
 }
 
@@ -1447,7 +1450,7 @@ p+p {
     grid-row: 3 / span 2;
     transform: rotate(7.161deg);
     justify-self: end;
-}
+    }
 
 .pamphlets__blueimg {
     grid-column: 1 / span 3;
@@ -1455,12 +1458,78 @@ p+p {
     transform: rotate(-13.169deg);
     align-self: end;
     justify-self: end;
-}
+    }
 
 .pamphlets__p--rightalign {
     grid-column: 1 / span 4;
     grid-row: 6 / span 1;
     margin-top: 3rem;
+}
+
+@media screen and (min-width : 50em) {
+    .black-bg {
+        padding: 3rem 5rem;
+    }
+
+    .pamphlets__container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: .5fr 1fr;
+        gap: 4rem;
+    }
+
+    .pamphlets__container__title {
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+    }
+
+    .pamphlets__greenimg {
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 2;
+        align-self: center;
+        max-width: 19rem;
+        justify-self: center;
+        margin-bottom: 2rem;
+    }
+
+    .pamphlets__pinkimg {
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 1;
+        z-index: 10;
+        max-width: 16rem;
+        justify-self: start;
+        position: relative;
+    }
+
+    .pamphlets__blueimg {
+        grid-column: 1 / span 1;
+        grid-row: 2 / span 1;
+        max-width: 17rem;
+        justify-self: center;
+        position: relative;
+    }
+
+    .pamphlets__blueimg::after,  .pamphlets__pinkimg::after  {
+        position: absolute;
+        content: "";
+        background-image: url(../../assets/img/ink-splatter.png);
+        width: 28.9375rem;
+        height: 28.9375rem;
+        mix-blend-mode: screen;
+        top: 30%;
+        left: 40%;
+    }
+
+    .pamphlets__pinkimg::after{
+        top: 5%;
+            left: -90%;
+    }
+
+    .pamphlets__p--rightalign {
+        grid-column: 2 / span 1;
+        grid-row: 2/ span 1;
+        align-self: end;
+    }
+
 }
 
 /* --- shake section -------------------------------------------------------------------------------------------- */
@@ -1483,6 +1552,13 @@ p+p {
     font-family: "IM Fell Double Pica", serif;
     font-size: var(--fs-xl);
     line-height: 125%;
+    max-width: 52rem;
+}
+
+@media screen and (min-width : 50em) {
+    .shake__big-text{
+        
+    }
 }
 
 /* --- more museum section -------------------------------------------------------------------------------------- */
