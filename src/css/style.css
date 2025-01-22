@@ -1597,7 +1597,7 @@ p+p {
     grid-row: 3 / span 2;
     transform: rotate(7.161deg);
     justify-self: end;
-    }
+}
 
 .pamphlets__blueimg {
     grid-column: 1 / span 3;
@@ -1605,7 +1605,7 @@ p+p {
     transform: rotate(-13.169deg);
     align-self: end;
     justify-self: end;
-    }
+}
 
 .pamphlets__p--rightalign {
     grid-column: 1 / span 4;
