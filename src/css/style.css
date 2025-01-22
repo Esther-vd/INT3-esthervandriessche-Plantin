@@ -90,23 +90,6 @@ body {
     overflow-x: hidden;
 }
 
-
-/* 
-main {
-    margin: 0 auto;
-    overflow-x: hidden;
-    padding: 0 1rem;
-    padding-top: .5rem;
-    overflow-y: visible;
-}
-
-header{
-    margin: 0 auto;
-        padding: 0 1rem;
-        padding-top: .5rem;
-        overflow-y: visible;
-} */
-
 .center-with-max {
     max-width: var(--max-page-width);
     margin: 0 auto;
@@ -647,10 +630,9 @@ p+p {
 }
 
 .achievements__receipt__left {
-    transform: rotate(-90deg) scaleY(-1);
+    transform: rotate(-39.091deg) scaleY(-1);
     grid-column: 1;
     grid-row: 2 / span 3;
-    /* fix */
     max-height: 15rem;
     justify-self: center;
     align-self: center;
@@ -667,7 +649,7 @@ p+p {
 }
 
 .achievements__receipt__right {
-    transform: rotate(-90deg);
+    transform: rotate(-135.254deg);
     grid-column: 1;
     grid-row: 1 / span 1;
     /* fix */
@@ -1453,7 +1435,6 @@ p+p {
     grid-template-rows: auto 1fr 1fr 1fr auto;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
 
 .pitfall__title {
@@ -1520,10 +1501,8 @@ p+p {
 
 @media screen and (min-width : 50em) {
     .pitfall__container {
-
         grid-template-columns: 1fr .7fr 1fr 1fr 2fr;
         grid-template-rows: auto 1fr 1fr 1fr auto;
-
     }
 
     .pitfall__dart {
@@ -1561,7 +1540,6 @@ p+p {
         right: -80%;
         top: 20%;
     }
-
 }
 
 /* --- pamphlet section ---------------------------------------------------------------------------------------- */
@@ -1875,10 +1853,10 @@ p+p {
 
 /* --- footer ------------------------------------------------------------------------------------------------------- */
 .footer__receipt img {
-    left: 10%;
+    right: -20%;
     position: relative;
-    transform: scale(1.2);
-    max-width: var(--max-page-width);
+    transform: scale(1.4);
+    max-width: 20rem;
 }
 
 .footer__info {
@@ -1922,6 +1900,12 @@ p+p {
     margin: 1rem;
 }
 
+@media screen and (min-width : 30em) {
+.footer__receipt img {
+        max-width: 30rem;
+    }
+}
+
 @media screen and (min-width : 50em) {
     .footer__info {
         flex-flow: row nowrap;
@@ -1941,10 +1925,8 @@ p+p {
     }
 
     .footer__receipt img {
-        left: 10%;
-        position: relative;
-        transform: scale(1);
-        max-width: var(--max-page-width);
+        right: -20%;
+        max-width: 45rem;
     }
 
     footer h2 {
