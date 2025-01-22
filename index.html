@@ -343,14 +343,15 @@
     <div class="center-with-max">
       <section class="colour__container">
         <div class="colour__container__article">
-          <picture class="colour__newspaper">
+          <picture draggable="false" class="colour__newspaper">
             <img src="assets/img/colour-article.png" alt="newspaper with a woodblock drawing on top of it">
           </picture>
           <div class="colour__container__article__interactive">
             <div class="colour__container__article__c">
-              <canvas class="colour__canvas"></canvas>
-              <img class="colour__drawing" src="assets/svg/colour-letter.svg"
-                alt="woodblock drawing of the capital letter C with decoration">
+             
+              <img draggable="false" class="colour__drawing" src="assets/svg/colour-letter.svg"
+                alt="woodblock drawing of the capital letter C with decoration"> 
+                <canvas class="colour__canvas"></canvas>
             </div>
             <div class="colour__container__options">
               <div class="colour__option--blue colour__option">
@@ -599,6 +600,7 @@
       </footer>
 
   </main>
+  <script src="src/js/script.js"></script>
   <script src="src/js/hamburger.js"></script>
 </body>
 
