@@ -280,7 +280,7 @@ h2 {
 
 
 .stamp-text {
-    font-family: "Rubik Dirt", serif;
+    font-family: "Rubik Dirt", sans-serif;
     font-weight: 400;
     color: var(--primary-red, #E20C0C);
     opacity: 0.34;
@@ -316,7 +316,7 @@ p+p {
     box-shadow: var(--shadow-post-it);
 }
 
-.pamphlet{
+.pamphlet {
     box-shadow: var(--shadow-white);
 }
 
@@ -1450,7 +1450,7 @@ p+p {
     grid-row: 3 / span 2;
     transform: rotate(7.161deg);
     justify-self: end;
-    }
+}
 
 .pamphlets__blueimg {
     grid-column: 1 / span 3;
@@ -1458,7 +1458,7 @@ p+p {
     transform: rotate(-13.169deg);
     align-self: end;
     justify-self: end;
-    }
+}
 
 .pamphlets__p--rightalign {
     grid-column: 1 / span 4;
@@ -1508,7 +1508,8 @@ p+p {
         position: relative;
     }
 
-    .pamphlets__blueimg::after,  .pamphlets__pinkimg::after  {
+    .pamphlets__blueimg::after,
+    .pamphlets__pinkimg::after {
         position: absolute;
         content: "";
         background-image: url(../../assets/img/ink-splatter.png);
@@ -1519,9 +1520,9 @@ p+p {
         left: 40%;
     }
 
-    .pamphlets__pinkimg::after{
+    .pamphlets__pinkimg::after {
         top: 5%;
-            left: -90%;
+        left: -90%;
     }
 
     .pamphlets__p--rightalign {
@@ -1553,12 +1554,6 @@ p+p {
     font-size: var(--fs-xl);
     line-height: 125%;
     max-width: 52rem;
-}
-
-@media screen and (min-width : 50em) {
-    .shake__big-text{
-        
-    }
 }
 
 /* --- more museum section -------------------------------------------------------------------------------------- */
@@ -1636,6 +1631,21 @@ p+p {
     overflow: visible;
 }
 
+@media screen and (min-width : 50em) {
+    .more__container {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-evenly;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .more__container__img {
+        flex-shrink: 4;
+        padding: 5rem;
+    }
+}
+
 /* --- stories section ------------------------------------------------------------------------------------------ */
 .stories__container {
     display: flex;
@@ -1676,11 +1686,42 @@ p+p {
     gap: 2rem;
 }
 
+@media screen and (min-width : 50em) {
+    .stories__container__scroll {
+        overflow-x: hidden;
+        position: relative;
+        width: none;
+    }
+
+        .stories__question {
+            font-size: 10rem;
+            line-height: 1.30;
+        }
+
+    .stories__item {
+        min-width: 0;
+        max-width: 12rem;
+        
+    }
+
+        .stories__container__carrousel {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: end;
+            justify-content: space-evenly;
+            gap: 1rem;
+            margin: 2rem .5rem;
+            max-width: var(--max-page-width);
+            margin: 0 auto;
+        }
+}
+
 /* --- footer ------------------------------------------------------------------------------------------------------- */
 .footer__receipt img {
     left: 10%;
     position: relative;
     transform: scale(1.2);
+    max-width: var(--max-page-width);
 }
 
 .footer__info {
@@ -1690,6 +1731,7 @@ p+p {
     justify-content: center;
     text-align: center;
     margin-bottom: 2rem;
+
 }
 
 .footer__logo {
@@ -1721,4 +1763,45 @@ p+p {
 
 .footer__social-icons {
     margin: 1rem;
+}
+
+@media screen and (min-width : 50em) {
+    .footer__info{
+        flex-flow: row nowrap;
+        justify-content: space-evenly;
+        justify-items: center;
+        text-align: left;
+        font-size: var(--fs-sm);
+    }
+    
+    .footer__logo {
+        max-width: 7rem;
+        gap: 1rem;
+    }
+
+        .footer__social-icons {
+            margin: 0;
+        }
+        .footer__receipt img {
+            left: 10%;
+            position: relative;
+            transform: scale(1);
+            max-width: var(--max-page-width);
+        }
+    footer h2{
+        font-size: var(--fs-md);
+        text-align: center;
+    }
+
+}
+
+@media screen and (min-width : 65em) {
+    .footer__info {
+        font-size: var(--fs-base);
+    }
+
+    footer h2 {
+        font-size: var(--fs-xl);
+    }
+
 }
