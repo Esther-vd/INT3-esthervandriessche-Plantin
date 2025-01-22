@@ -949,14 +949,13 @@ p+p {
 .family__container {
     margin: 3rem 0;
     display: grid;
-    grid-template-rows: 1fr 1fr auto;
+    grid-template-rows: auto 1fr auto;
     gap: 2rem;
     margin-bottom: 5rem;
 }
 
 .family__container__img {
     position: relative;
-
 }
 
 .family__scrap {
@@ -980,7 +979,6 @@ p+p {
     position: absolute;
     transform: rotate(-21.388deg);
     max-width: 20rem;
-    bottom: 0;
     left: -50%;
     bottom: -10%;
     z-index: 10;
@@ -1004,6 +1002,155 @@ p+p {
 .family__heart img,
 .family__scrap img {
     filter: var(---dropshadow-base);
+}
+
+@media screen and (min-width : 30em) {
+    .family__container {
+        justify-items: center;
+    }
+
+    .family__container__img {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: .5fr .1fr;
+        margin-bottom: 5rem;
+    }
+
+    .family__scrap {
+        right: 0;
+        bottom: 0;
+        position: relative;
+        max-width: 20rem;
+        grid-row: 2 / span 1;
+        grid-column: 1 / span 1;
+        align-self: end;
+        justify-self: end;
+        margin-right: -4rem;
+        margin-top: -10rem;
+        margin-bottom: -10rem;
+        transform: rotate(-53.69deg);
+    }
+
+    .family__daughter {
+        position: relative;
+        max-width: 12rem;
+        z-index: 0;
+        grid-row: 1 / span 2;
+        grid-column: 2 / span 1;
+        align-self: center;
+        justify-self: end;
+    }
+
+    .family__post-it {
+        position: relative;
+        left: 0;
+        grid-row: 1 / span 2;
+        grid-column: 1 / span 2;
+        align-self: center;
+        justify-self: center;
+    }
+
+    .family__heart {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        z-index: 10;
+        grid-row: 2 / span 1;
+        grid-column: 1 / span 1;
+        align-self: end;
+        justify-self: center;
+        margin-bottom: -2rem;
+        max-width: 15rem;
+    }
+}
+
+@media screen and (min-width : 60em) {
+    .family__container {
+        grid-template-columns: .5fr 1fr .5fr;
+        grid-template-rows: 1fr .5fr 1fr;
+        margin-top: 7rem;
+        justify-items: normal;
+    }
+
+    .family__container__img {
+        grid-row: 1 / span 3;
+        grid-column: 1 / span 3;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr .5fr 1fr;
+        margin-bottom: 0;
+    }
+
+    .family__container__title {
+        grid-row: 1 / span 1;
+        grid-column: 2 / span 1;
+    }
+
+    .family__container__fill {
+        grid-row: 3 / span 1;
+        grid-column: 1 / span 3;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+    }
+
+    .family__red-caps {
+        display: block;
+    }
+
+    .family__scrap {
+        transform: rotate(-16.659deg);
+        grid-row: 1 / span 3;
+        grid-column: 1 / span 1;
+        align-self: center;
+        justify-self: start;
+        margin-left: -4rem;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .family__daughter {
+        z-index: 0;
+        grid-row: 1 / span 2;
+        grid-column: 2 / span 1;
+        align-self: center;
+        justify-self: end;
+    }
+
+    .family__post-it {
+        grid-row: 2 / span 1;
+        grid-column: 2 / span 1;
+        align-self: end;
+        justify-self: center;
+    }
+
+    .family__heart {
+        grid-row: 2 / span 1;
+        grid-column: 1 / span 1;
+        align-self: end;
+        justify-self: center;
+    }
+
+}
+
+@media screen and (min-width : 85em) {
+    .family__scrap {
+        max-width: 27rem;
+    }
+
+    .family__daughter {
+        max-width: 18rem;
+    }
+
+    .family__heart {
+        max-width: 15rem;
+    }
+
+    .post-it {
+        width: 16rem;
+        height: 16rem;
+        font-size: var(--fs-base);
+    }
+
 }
 
 /* --- map section --------------------------------------------------------------------------------------------- */
@@ -1538,7 +1685,6 @@ p+p {
     display: none;
 }
 
-
 .shake__container {
     display: flex;
     flex-flow: column nowrap;
@@ -1554,6 +1700,16 @@ p+p {
     font-size: var(--fs-xl);
     line-height: 125%;
     max-width: 52rem;
+}
+
+@media screen and (min-width : 30em) and (orientation: landscape), (min-width : 60em)  {
+    .shake__caps__desktop {
+        display: block;
+    }
+
+    .skake__caps__mobile {
+        display: none;
+    }
 }
 
 /* --- more museum section -------------------------------------------------------------------------------------- */
@@ -1673,8 +1829,17 @@ p+p {
 
 .stories__question {
     font-family: "IM Fell Double Pica", serif;
-    text-shadow: var(--shadow-base);
+    text-shadow: 84.725px 53.119px 80px rgba(0, 0, 0, 0.07),
+        54.915px 34.429px 46.852px rgba(0, 0, 0, 0.05),
+        32.635px 20.461px 25.481px rgba(0, 0, 0, 0.04),
+        16.945px 10.624px 13px rgba(0, 0, 0, 0.04),
+        6.904px 4.328px 6.519px rgba(0, 0, 0, 0.03),
+        1.569px 0.984px 3.148px rgba(0, 0, 0, 0.02);;
     font-size: 5rem;
+}
+
+.stories__item picture {
+    box-shadow: var(--shadow-base);
 }
 
 .stories__item {
@@ -1688,32 +1853,31 @@ p+p {
 
 @media screen and (min-width : 50em) {
     .stories__container__scroll {
-        overflow-x: hidden;
+        overflow: visible;
         position: relative;
         width: none;
     }
 
-        .stories__question {
-            font-size: 10rem;
-            line-height: 1.30;
-        }
+    .stories__question {
+        font-size: 10rem;
+        line-height: 1.30;
+    }
 
     .stories__item {
         min-width: 0;
         max-width: 12rem;
-        
     }
 
-        .stories__container__carrousel {
-            display: flex;
-            flex-flow: row nowrap;
-            align-items: end;
-            justify-content: space-evenly;
-            gap: 1rem;
-            margin: 2rem .5rem;
-            max-width: var(--max-page-width);
-            margin: 0 auto;
-        }
+    .stories__container__carrousel {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: end;
+        justify-content: space-evenly;
+        gap: 1rem;
+        margin: 2rem .5rem;
+        max-width: var(--max-page-width);
+        margin: 0 auto;
+    }
 }
 
 /* --- footer ------------------------------------------------------------------------------------------------------- */
@@ -1766,29 +1930,31 @@ p+p {
 }
 
 @media screen and (min-width : 50em) {
-    .footer__info{
+    .footer__info {
         flex-flow: row nowrap;
         justify-content: space-evenly;
         justify-items: center;
         text-align: left;
         font-size: var(--fs-sm);
     }
-    
+
     .footer__logo {
         max-width: 7rem;
         gap: 1rem;
     }
 
-        .footer__social-icons {
-            margin: 0;
-        }
-        .footer__receipt img {
-            left: 10%;
-            position: relative;
-            transform: scale(1);
-            max-width: var(--max-page-width);
-        }
-    footer h2{
+    .footer__social-icons {
+        margin: 0;
+    }
+
+    .footer__receipt img {
+        left: 10%;
+        position: relative;
+        transform: scale(1);
+        max-width: var(--max-page-width);
+    }
+
+    footer h2 {
         font-size: var(--fs-md);
         text-align: center;
     }
