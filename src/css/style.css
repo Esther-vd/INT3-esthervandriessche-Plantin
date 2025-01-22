@@ -69,8 +69,6 @@ body {
     font-size: var(--fs-base);
     color: var(--black);
     line-height: 130%;
-    /* max-width: var(--max-page-width); */
-
     background-color: var(--bg-medium-white);
     margin: 0 auto;
     overflow-x: hidden;
@@ -93,10 +91,6 @@ body {
 .center-with-max {
     max-width: var(--max-page-width);
     margin: 0 auto;
-    overflow-x: hidden;
-    padding: 0 1rem;
-    padding-top: .5rem;
-    overflow-y: visible;
 }
 
 /* --- hamburger menu ---------------------------------------------------------------------------- */
