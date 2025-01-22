@@ -949,7 +949,7 @@ p+p {
 .family__container {
     margin: 3rem 0;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 1fr 1fr auto;
     gap: 2rem;
     margin-bottom: 5rem;
 }
@@ -1007,6 +1007,7 @@ p+p {
 @media screen and (min-width : 30em) {
     .family__container {
         justify-items: center;
+        grid-template-rows: auto 1fr auto;
     }
 
     .family__container__img {
