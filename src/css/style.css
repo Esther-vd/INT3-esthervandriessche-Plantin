@@ -115,7 +115,7 @@ header{
         overflow-y: visible;
 } */
 
-.center-with-max{
+.center-with-max {
     max-width: var(--max-page-width);
     margin: 0 auto;
 }
@@ -760,6 +760,7 @@ p+p {
 .printer__book__page {
     grid-column: 1;
     grid-row: 1;
+    box-shadow: var(--shadow-base);
 }
 
 .printer__book__text {
@@ -870,6 +871,10 @@ p+p {
     transform: scaleY(-1);
 }
 
+.receipt__transition__container---reverse img {
+    box-shadow: var(--shadow-base);
+}
+
 @media screen and (min-width : 50em) {
     .number__title {
         margin-top: 1rem;
@@ -903,10 +908,33 @@ p+p {
 
 .stamps__red-caps {
     writing-mode: vertical-rl;
+    align-self: start;
+    margin-bottom: 1rem;
 }
 
 .stamps__stamp-text {
     display: none;
+}
+
+@media screen and (min-width : 50em) {
+    .stamps__container {
+        grid-template-rows: 1fr .7fr;
+        grid-template-columns: .5fr 1fr .5fr;
+        justify-items: center;
+        margin-top: 5rem;
+    }
+
+    .stamps__stamp-text {
+        display: block;
+        grid-column: 1 / span 3;
+        grid-row: 2;
+        text-align: center;
+        white-space: nowrap;
+        justify-self: center;
+        align-self: end;
+        max-width: none;
+    }
+
 }
 
 /* --- family section ------------------------------------------------------------------------------------------- */
@@ -972,10 +1000,15 @@ p+p {
 
 /* --- map section --------------------------------------------------------------------------------------------- */
 .map__container {
-    display: grid;
-    grid-template-rows: auto 1fr;
+    display: flex;
+    flex-flow: column nowrap;
     gap: 3rem;
+}
+
+.map__container__img {
+    display: grid;
     position: relative;
+    margin: 3rem;
 }
 
 .map__img {
@@ -1026,6 +1059,24 @@ p+p {
     display: none;
 }
 
+@media screen and (min-width : 50em) {
+    .map__container {
+        flex-flow: row nowrap;
+        align-items: center;
+    }
+
+    .map__container__img {
+        flex-shrink: 2;
+    }
+
+    .map__img::after {
+        right: 0%;
+        top: 0;
+        transform: rotate(-12.464deg);
+        width: 12rem;
+    }
+}
+
 /* --- passport section ------------------------------------------------------------------------------------------ */
 .pass__container {
     margin-top: 3rem;
@@ -1041,6 +1092,13 @@ p+p {
     font-size: var(--fs-xxl);
     grid-column: 1;
     grid-row: 2;
+    max-width: 40rem;
+}
+
+.pass__red-caps{
+    grid-column: 1;
+        grid-row: 1;
+        justify-self: center;
 }
 
 .pass__id {
@@ -1079,6 +1137,16 @@ p+p {
     transform: scale(.9);
 }
 
+@media screen and (min-width : 50em) {
+    .pass__id {
+        align-self: start;
+    }
+
+    .pass__img {
+        align-self: start;
+        grid-row: 1 / span 3;
+    }
+}
 
 /* --- colour section -------------------------------------------------------------------------------------------- */
 .colour__container__article {
