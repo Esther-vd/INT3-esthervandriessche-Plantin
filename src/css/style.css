@@ -90,23 +90,6 @@ body {
     overflow-x: hidden;
 }
 
-
-/* 
-main {
-    margin: 0 auto;
-    overflow-x: hidden;
-    padding: 0 1rem;
-    padding-top: .5rem;
-    overflow-y: visible;
-}
-
-header{
-    margin: 0 auto;
-        padding: 0 1rem;
-        padding-top: .5rem;
-        overflow-y: visible;
-} */
-
 .center-with-max {
     max-width: var(--max-page-width);
     margin: 0 auto;
@@ -1183,19 +1166,6 @@ p+p {
     width: 7rem;
     mix-blend-mode: multiply;
 }
-
-/* 
-.map__dart__circle {
-    grid-row: 1;
-    grid-column: 1;
-    border-radius: 50%;
-    background-color: var(--black);
-    width: 0.50175rem;
-    height: 0.50175rem;
-    position: absolute;
-    right: 32%;
-    top: 13.5%;
-} */
 
 .map__dart {
     position: absolute;
