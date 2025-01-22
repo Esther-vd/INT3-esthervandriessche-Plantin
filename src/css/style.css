@@ -61,7 +61,7 @@ img {
     --shadow-base-reverse: -84.725px -53.119px 80px 0px rgba(0, 0, 0, 0.07), -54.915px -34.429px 46.852px 0px rgba(0, 0, 0, 0.05), -32.635px -20.461px 25.481px 0px rgba(0, 0, 0, 0.04), -16.945px -10.624px 13px 0px rgba(0, 0, 0, 0.04), -6.904px -4.328px 6.519px 0px rgba(0, 0, 0, 0.03), -1.569px -0.984px 3.148px 0px rgba(0, 0, 0, 0.02);
     ---dropshadow-base: drop-shadow(84.725px 53.119px 80px rgba(0, 0, 0, 0.07)) drop-shadow(54.915px 34.429px 46.852px rgba(0, 0, 0, 0.05)) drop-shadow(32.635px 20.461px 25.481px rgba(0, 0, 0, 0.04)) drop-shadow(16.945px 10.624px 13px rgba(0, 0, 0, 0.04)) drop-shadow(6.904px 4.328px 6.519px rgba(0, 0, 0, 0.03)) drop-shadow(1.569px 0.984px 3.148px rgba(0, 0, 0, 0.02));
 
-    --max-page-width: 100rem;
+    --max-page-width: 80rem;
 }
 
 body {
@@ -1087,10 +1087,10 @@ p+p {
     max-width: 40rem;
 }
 
-.pass__red-caps{
+.pass__red-caps {
     grid-column: 1;
-        grid-row: 1;
-        justify-self: center;
+    grid-row: 1;
+    justify-self: center;
 }
 
 .pass__id {
@@ -1152,7 +1152,7 @@ p+p {
     grid-column: 1;
     grid-row: 1;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: min-content;
     justify-items: stretch;
     gap: 2rem;
     margin-right: 2rem;
@@ -1167,6 +1167,7 @@ p+p {
     transform: rotate(-4.035deg);
     mix-blend-mode: multiply;
     padding: .5rem;
+    min-height: min-content;
 }
 
 .colour__container__options {
@@ -1174,15 +1175,15 @@ p+p {
     grid-row: 2;
     display: flex;
     justify-content: space-evenly;
+    align-items: end;
 }
 
 .colour__canvas {
     grid-column: 1;
     grid-row: 1;
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 95%;
     position: absolute;
-
 }
 
 .colour__drawing {
@@ -1240,6 +1241,52 @@ p+p {
     height: 3rem;
     display: grid;
     place-items: center;
+}
+
+@media screen and (min-width : 50em) {
+    .colour__container {
+        display: flex;
+        flex-flow: row-reverse nowrap;
+        gap: 3rem;
+        max-width: 60rem ;
+        margin: 0 auto;
+    }
+
+    .colour__container__article {
+        margin-right: -10rem;
+        flex-shrink: 2;
+    }
+}
+
+@media screen and (min-width : 60em) {
+    .colour__container__article__c {
+        padding: 1.5rem;
+    }
+
+    .colour__circle {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+@media screen and (min-width : 85em) {
+    .colour__container__article__c {
+        padding: 2.5rem;
+    }
+
+    .colour__circle {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .colour__option {
+        max-height: min-content;
+    }
+
+        .colour__container__article {
+            margin-right: -10rem;
+            flex-shrink: 4;
+        }
 }
 
 /* --- pitfall -------------------------------------------------------------------------------------------------- */
