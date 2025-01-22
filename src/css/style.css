@@ -1362,6 +1362,7 @@ p+p {
     height: 3rem;
     border: var(--black) solid 4px;
     flex-shrink: 1;
+    cursor: grab;
 }
 
 .colour__option {
@@ -1370,6 +1371,10 @@ p+p {
     align-items: center;
     justify-content: center;
     z-index: 10;
+}
+
+.colour__option--selected{
+    border: var(--black) solid 7px;
 }
 
 .colour__circle--yellow {
@@ -1393,6 +1398,7 @@ p+p {
     height: 3rem;
     display: grid;
     place-items: center;
+    cursor: grab;
 }
 
 @media screen and (min-width : 50em) {
