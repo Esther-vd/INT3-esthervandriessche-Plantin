@@ -1248,7 +1248,7 @@ p+p {
         display: flex;
         flex-flow: row-reverse nowrap;
         gap: 3rem;
-        max-width: 60rem ;
+        max-width: 60rem;
         margin: 0 auto;
     }
 
@@ -1283,10 +1283,10 @@ p+p {
         max-height: min-content;
     }
 
-        .colour__container__article {
-            margin-right: -10rem;
-            flex-shrink: 4;
-        }
+    .colour__container__article {
+        margin-right: -10rem;
+        flex-shrink: 4;
+    }
 }
 
 /* --- pitfall -------------------------------------------------------------------------------------------------- */
@@ -1297,6 +1297,7 @@ p+p {
     grid-template-rows: auto 1fr 1fr 1fr auto;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
 }
 
 .pitfall__title {
@@ -1353,6 +1354,58 @@ p+p {
 .pitfall__p {
     grid-column: 1 / span 3;
     grid-row: 5 / span 1;
+}
+
+@media screen and (min-width : 30em) {
+    .pitfall__photo {
+         margin-left: 5rem;
+        }
+}
+
+@media screen and (min-width : 50em) {
+    .pitfall__container {
+
+        grid-template-columns: 1fr .7fr 1fr 1fr 2fr;
+        grid-template-rows: auto 1fr 1fr 1fr auto;
+
+    }
+
+    .pitfall__dart {
+        grid-column: 3 / span 2;
+        grid-row: 1 / span 2;
+        align-self: center;
+        justify-self: center;
+    }
+
+    .pitfall__photo {
+        grid-column: 2 / span 2;
+        grid-row: 2 / span 2;
+        align-self: center;
+        justify-self: start;
+        margin-left: 2rem;
+    }
+
+    .pitfall__title {
+        grid-column: 3 / span 3;
+        grid-row: 1;
+        justify-self: start;
+    }
+
+    .pitfall__stamp-text {
+        grid-column: 1 / span 4;
+        grid-row: 3 / span 1;
+    }
+
+    .pitfall__p {
+        grid-column: 4 / span 2;
+        grid-row: 2 / span 2;
+    }
+
+    .pitfall__photo::after {
+        right: -80%;
+        top: 20%;
+    }
+
 }
 
 /* --- pamphlet section ---------------------------------------------------------------------------------------- */
