@@ -127,9 +127,6 @@ const init = () => {
                 .then(response => {
                     if (response == 'granted') {
                         window.addEventListener('devicemotion', (e) => {
-                            $imgs.forEach(img => {
-                                img.classList.add('hide')
-                            });
                             if ((e.rotationRate.alpha > 50 || e.rotationRate.beta > 50 || e.rotationRate.gamma > 50)) {
                                 $imgs.forEach(img => {
                                     img.classList.add('hide')
@@ -143,7 +140,7 @@ const init = () => {
                 .catch(console.error)
         } else {
             // non iOS 13+
-            $box.addEventListener('devicemotion', (e) => {
+            window.addEventListener('devicemotion', (e) => {
                 if ((e.rotationRate.alpha > 100 || e.rotationRate.beta > 100 || e.rotationRate.gamma > 100)) {
                     $imgs.forEach(img => {
                         img.classList.add('hide')
