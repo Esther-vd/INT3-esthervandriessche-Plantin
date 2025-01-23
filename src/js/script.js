@@ -110,51 +110,98 @@ const pamphletImgToRandomPos = (img) => {
     img.classList.remove("hide");
 };
 
-const init = () => {
-    colourSetup();
-
-
+const pamphletPlaceImg = () => {
     $imgs.forEach(img => {
         pamphletImgToRandomPos(img);
-        img.addEventListener("mouseover", e => { img.classList.add('hide') });
+        img.addEventListener("mouseover", () => { img.classList.add('hide'); });
     });
+}
 
-    function requestT() {
-        document.querySelector(".shake__permission").classList.add('hide');
-        if (typeof DeviceMotionEvent.requestPermission === 'function') {
-            // iOS 13+
-            // alert('enter');
-            DeviceMotionEvent.requestPermission()
-                .then(response => {
-                    if (response == 'granted') {
-                        window.addEventListener('devicemotion', (e) => {
-                            if ((e.rotationRate.alpha > 250 || e.rotationRate.beta > 250 || e.rotationRate.gamma > 250)) {
-                                $imgs.forEach(img => {
-                                    img.classList.add('hide')
-                                });
-                            }
-                        }, false)
-                    }
-                })
-
-
-                .catch(console.error)
-        } else {
-            // non iOS 13+
-            window.addEventListener('devicemotion', (e) => {
-                if ((e.rotationRate.alpha > 100 || e.rotationRate.beta > 100 || e.rotationRate.gamma > 100)) {
-                    $imgs.forEach(img => {
-                        img.classList.add('hide')
-                    });
+const requestT = () => {
+    document.querySelector(".shake__permission").classList.add('hide');
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+        // iOS 13+
+        // alert('enter');
+        DeviceMotionEvent.requestPermission()
+            .then(response => {
+                if (response == 'granted') {
+                    window.addEventListener('devicemotion', (e) => {
+                        if ((e.rotationRate.alpha > 250 || e.rotationRate.beta > 250 || e.rotationRate.gamma > 250)) {
+                            $imgs.forEach(img => {
+                                img.classList.add('hide')
+                            });
+                        }
+                    }, false)
                 }
             })
-        }
 
+
+            .catch(console.error)
+    } else {
+        // non iOS 13+
+        window.addEventListener('devicemotion', (e) => {
+            if ((e.rotationRate.alpha > 100 || e.rotationRate.beta > 100 || e.rotationRate.gamma > 100)) {
+                $imgs.forEach(img => {
+                    img.classList.add('hide')
+                });
+            }
+        })
     }
+}
 
+//stamp section variables
+const $stamps = document.querySelectorAll(".stamp__img");
+const $stampsplace = document.querySelectorAll(".stamp__img__place");
+const $stampSection = document.querySelector(".stamps__container");
+let stampCounter = 0;
+const stampMaximum = 8;
+
+const stampMouseFollow = (stamp, section) => {
+    section.addEventListener("mouseenter", e => {
+        gsap.to(stamp, { scale: 1, opacity: 1 }, 0.3);
+        positionCircle(e, stamp, section);
+    });
+    section.addEventListener("mouseleave", e => {
+        gsap.to(stamp, { scale: 0, opacity: 0 }, 0.3);
+        positionCircle(e, stamp, section);
+    });
+    
+    section.addEventListener("mousemove", e => {
+        gsap.to(stamp, { scale: 1, opacity: 1 }, 0.3);
+        positionCircle(e, stamp, section);
+    });
+}
+
+const positionCircle = (e, stamp, section) => {
+   let xTo = gsap.quickTo(stamp, "x", { duration: 0.3 });
+    let yTo = gsap.quickTo(stamp, "y", { duration: 0.3 });
+
+    xTo(e.pageX - section.offsetLeft);
+    yTo(e.pageY - section.offsetTop);
+}
+
+const stampClick = (e) => {
+   if (stampCounter < stampMaximum){
+       $stamps[stampCounter].classList.remove("hide");
+       gsap.set($stamps[stampCounter], { x: e.pageX - $stampSection.offsetLeft, y: e.pageY - $stampSection.offsetTop, scale: 1}, 0.3);
+       stampCounter++;
+   }else{
+    stampCounter = 0;
+       gsap.set($stamps[stampCounter], { x: e.pageX - $stampSection.offsetLeft, y: e.pageY - $stampSection.offsetTop, scale: 1 }, 0.3);
+       stampCounter++;
+   }
+}
+
+const init = () => {
+    colourSetup();
+    //pamphlet interaction
+    pamphletPlaceImg();
     document.querySelector(".shake__permission").onclick = requestT;
+    //stamp interaction
+    $stamps.forEach(stamp => {
+        gsap.set(stamp, { scale: 0, xPercent: -50, yPercent: -50 });
+    });
+    $stampSection.addEventListener('click', e => stampClick(e));
 }
 
 init();
-
-
