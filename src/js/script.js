@@ -126,7 +126,7 @@ const init = () => {
             DeviceMotionEvent.requestPermission()
                 .then(response => {
                 if (response == 'granted') {
-                    $box.addEventListener('devicemotion', (e) => {
+                    window.addEventListener('devicemotion', (e) => {
                         $imgs.forEach(img => {
                             img.classList.add('hide')
                         });
