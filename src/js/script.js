@@ -127,7 +127,10 @@ const init = () => {
                 .then(response => {
                 if (response == 'granted') {
                     $box.addEventListener('devicemotion', (e) => {
-                        if ((e.rotationRate.alpha > 100 || e.rotationRate.beta > 100 || e.rotationRate.gamma > 100)) {
+                        $imgs.forEach(img => {
+                            img.classList.add('hide')
+                        });
+                        if ((e.rotationRate.alpha > 50 || e.rotationRate.beta > 50 || e.rotationRate.gamma > 50)) {
                             $imgs.forEach(img => {
                                 img.classList.add('hide')
                             });
