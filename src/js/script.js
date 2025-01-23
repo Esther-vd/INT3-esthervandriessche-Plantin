@@ -26,16 +26,16 @@ const colourDraw = (e) => {
     } else if (stopDrawing) {
         drawing = false;
         ctx.closePath();
-    }
+    };
 
-}
+};
 const getMousePos = (canvas, e) => {
     const rect = canvas.getBoundingClientRect();
     return {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top
     };
-}
+};
 
 const colourClearCanvas = () => {
     ctx.clearRect(0, 0, $canvas.width, $canvas.height);
@@ -44,8 +44,8 @@ const colourClearCanvas = () => {
 const colourChanger = (e) => {
     colourStrokeColour = e.target.dataset.colour;
     document.querySelector(".colour__option--selected").classList.remove("colour__option--selected");
-    e.target.classList.add("colour__option--selected")
-}
+    e.target.classList.add("colour__option--selected");
+};
 
 const colourMouseListeners = () => {
     //draw events
@@ -61,7 +61,7 @@ const colourMouseListeners = () => {
     document.querySelector(".colour__circle--yellow").addEventListener('click', colourChanger);
     //clear canvas events
     document.querySelector(".colour__circle--clear").addEventListener('click', colourClearCanvas);
-}
+};
 
 const colourEventsMobile = () => {
     //activate the mouse events when a touch event is activated but with the touch coordinates
@@ -88,13 +88,13 @@ const colourEventsMobile = () => {
         let mouseEvent = new MouseEvent("mouseup", {});
         $canvas.dispatchEvent(mouseEvent);
     }, { passive: false });
-}
+};
 
 const colourSetup = () => {
     $canvas.width = $colourDrawing.getBoundingClientRect().width;
     $canvas.height = $colourDrawing.getBoundingClientRect().width;
     colourMouseListeners();
-}
+};
 
 //variables for the pamphlet interaction
 const $imgs = document.querySelectorAll(".shake__img");
@@ -108,52 +108,51 @@ const pamphletImgToRandomPos = (img) => {
     img.style.top = `${numY}px`;
     img.style.transform = `rotate(${angle}deg)`
     img.classList.remove("hide");
-}
+};
 
-const init = () => {
-    colourSetup();
-
-
+const pamphletPlaceImg = () => {
     $imgs.forEach(img => {
         pamphletImgToRandomPos(img);
-        img.addEventListener("mouseover", e => { img.classList.add('hide') });
+        img.addEventListener("mouseover", () => { img.classList.add('hide'); });
     });
+}
 
-    function requestT() {
-        if (typeof DeviceMotionEvent.requestPermission === 'function') {
-            // iOS 13+
-            // alert('enter');
-            DeviceMotionEvent.requestPermission()
-                .then(response => {
+const requestT = () => {
+    document.querySelector(".shake__permission").classList.add('hide');
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+        // iOS 13+
+        // alert('enter');
+        DeviceMotionEvent.requestPermission()
+            .then(response => {
                 if (response == 'granted') {
-                    $box.addEventListener('devicemotion', (e) => {
-                        if ((e.rotationRate.alpha > 100 || e.rotationRate.beta > 100 || e.rotationRate.gamma > 100)) {
+                    window.addEventListener('devicemotion', (e) => {
+                        if ((e.rotationRate.alpha > 250 || e.rotationRate.beta > 250 || e.rotationRate.gamma > 250)) {
                             $imgs.forEach(img => {
                                 img.classList.add('hide')
                             });
                         }
-                    })
+                    }, false)
                 }
             })
 
 
-
-        } else {
-    // non iOS 13+
-    $box.addEventListener('devicemotion', (e) => {
-        if ((e.rotationRate.alpha > 100 || e.rotationRate.beta > 100 || e.rotationRate.gamma > 100)) {
-            $imgs.forEach(img => {
-                img.classList.add('hide')
-            });
-        }
-    })
+            .catch(console.error)
+    } else {
+        // non iOS 13+
+        window.addEventListener('devicemotion', (e) => {
+            if ((e.rotationRate.alpha > 100 || e.rotationRate.beta > 100 || e.rotationRate.gamma > 100)) {
+                $imgs.forEach(img => {
+                    img.classList.add('hide')
+                });
+            }
+        })
+    }
 }
 
-    }
-
-document.querySelector(".shake__permission").onclick = requestT;
+const init = () => {
+    colourSetup();
+    pamphletPlaceImg();
+    document.querySelector(".shake__permission").onclick = requestT;
 }
 
 init();
-
-

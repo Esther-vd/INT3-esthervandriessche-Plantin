@@ -1691,8 +1691,11 @@ p+p {
     position: relative;
 }
 
-.shake__permission{
+.shake__permission {
     z-index: 10;
+    color: var(--bg-white);
+    text-decoration: underline;
+    font-size: var(--fs-sm);
 }
 
 .shake__big-text {
