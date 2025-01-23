@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build --base=/INT3-esthervandriessche-Plantin/",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
