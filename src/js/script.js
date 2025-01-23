@@ -120,6 +120,7 @@ const init = () => {
     });
 
     function requestT() {
+        document.querySelector(".shake__permission").classList.add('hide');
         if (typeof DeviceMotionEvent.requestPermission === 'function') {
             // iOS 13+
             // alert('enter');
