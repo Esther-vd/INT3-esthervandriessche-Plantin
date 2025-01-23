@@ -26,16 +26,16 @@ const colourDraw = (e) => {
     } else if (stopDrawing) {
         drawing = false;
         ctx.closePath();
-    }
+    };
 
-}
+};
 const getMousePos = (canvas, e) => {
     const rect = canvas.getBoundingClientRect();
     return {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top
     };
-}
+};
 
 const colourClearCanvas = () => {
     ctx.clearRect(0, 0, $canvas.width, $canvas.height);
@@ -44,8 +44,8 @@ const colourClearCanvas = () => {
 const colourChanger = (e) => {
     colourStrokeColour = e.target.dataset.colour;
     document.querySelector(".colour__option--selected").classList.remove("colour__option--selected");
-    e.target.classList.add("colour__option--selected")
-}
+    e.target.classList.add("colour__option--selected");
+};
 
 const colourMouseListeners = () => {
     //draw events
@@ -61,7 +61,7 @@ const colourMouseListeners = () => {
     document.querySelector(".colour__circle--yellow").addEventListener('click', colourChanger);
     //clear canvas events
     document.querySelector(".colour__circle--clear").addEventListener('click', colourClearCanvas);
-}
+};
 
 const colourEventsMobile = () => {
     //activate the mouse events when a touch event is activated but with the touch coordinates
@@ -88,13 +88,13 @@ const colourEventsMobile = () => {
         let mouseEvent = new MouseEvent("mouseup", {});
         $canvas.dispatchEvent(mouseEvent);
     }, { passive: false });
-}
+};
 
 const colourSetup = () => {
     $canvas.width = $colourDrawing.getBoundingClientRect().width;
     $canvas.height = $colourDrawing.getBoundingClientRect().width;
     colourMouseListeners();
-}
+};
 
 //variables for the pamphlet interaction
 const $imgs = document.querySelectorAll(".shake__img");
@@ -108,7 +108,7 @@ const pamphletImgToRandomPos = (img) => {
     img.style.top = `${numY}px`;
     img.style.transform = `rotate(${angle}deg)`
     img.classList.remove("hide");
-}
+};
 
 const init = () => {
     colourSetup();
