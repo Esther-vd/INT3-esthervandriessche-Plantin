@@ -149,10 +149,59 @@ const requestT = () => {
     }
 }
 
+//stamp section variables
+const $stamps = document.querySelectorAll(".stamp__img");
+const $stampsplace = document.querySelectorAll(".stamp__img__place");
+const $stampSection = document.querySelector(".stamps__container");
+let stampCounter = 0;
+const stampMaximum = 8;
+
+const stampMouseFollow = (stamp, section) => {
+    section.addEventListener("mouseenter", e => {
+        gsap.to(stamp, { scale: 1, opacity: 1 }, 0.3);
+        positionCircle(e, stamp, section);
+    });
+    section.addEventListener("mouseleave", e => {
+        gsap.to(stamp, { scale: 0, opacity: 0 }, 0.3);
+        positionCircle(e, stamp, section);
+    });
+    
+    section.addEventListener("mousemove", e => {
+        gsap.to(stamp, { scale: 1, opacity: 1 }, 0.3);
+        positionCircle(e, stamp, section);
+    });
+}
+
+const positionCircle = (e, stamp, section) => {
+   let xTo = gsap.quickTo(stamp, "x", { duration: 0.3 });
+    let yTo = gsap.quickTo(stamp, "y", { duration: 0.3 });
+
+    xTo(e.pageX - section.offsetLeft);
+    yTo(e.pageY - section.offsetTop);
+}
+
+const stampClick = (e) => {
+   if (stampCounter < stampMaximum){
+       $stamps[stampCounter].classList.remove("hide");
+       gsap.set($stamps[stampCounter], { x: e.pageX - $stampSection.offsetLeft, y: e.pageY - $stampSection.offsetTop, scale: 1}, 0.3);
+       stampCounter++;
+   }else{
+    stampCounter = 0;
+       gsap.set($stamps[stampCounter], { x: e.pageX - $stampSection.offsetLeft, y: e.pageY - $stampSection.offsetTop, scale: 1 }, 0.3);
+       stampCounter++;
+   }
+}
+
 const init = () => {
     colourSetup();
+    //pamphlet interaction
     pamphletPlaceImg();
     document.querySelector(".shake__permission").onclick = requestT;
+    //stamp interaction
+    $stamps.forEach(stamp => {
+        gsap.set(stamp, { scale: 0, xPercent: -50, yPercent: -50 });
+    });
+    $stampSection.addEventListener('click', e => stampClick(e));
 }
 
 init();

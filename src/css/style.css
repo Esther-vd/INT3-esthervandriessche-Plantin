@@ -882,11 +882,39 @@ p+p {
 }
 
 /* --- stamp section -------------------------------------------------------------------------------------------- */
+@keyframes upDown {
+    from {
+        transform: translateY(-.5rem);
+    }
+
+    to {
+        transform: translateY(.5rem);
+    }
+}
 .stamps__container {
     margin: 3rem 0;
     display: grid;
     grid-template-rows: 1fr 1fr;
+    position: relative;
+    cursor: url('../../assets/svg/pointer-hand-angle.png') -100 100, grab;
 }
+
+ .stamps__pointer {
+     grid-row: 1;
+     justify-self: center;
+    animation: upDown .5s ease-in-out infinite alternate;
+ }
+
+ .stamps__pointer::before {
+    display: block;
+     content: "tap";
+     position: relative;
+     left: 0;
+     top: 0;
+     font-size: var(--fs-sm);
+     width: 100px;
+     height: 100px;
+ }
 
 .stamps__red-caps {
     writing-mode: vertical-rl;
@@ -898,7 +926,28 @@ p+p {
     display: none;
 }
 
+.stamp__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    width: 30vw;
+    mix-blend-mode: multiply;
+    opacity: .85;
+}
+
+@media screen and (min-width : 30em) and (orientation : landscape) {
+    .stamps__pointer {
+        display: none;
+    }
+}
+
+
 @media screen and (min-width : 50em) {
+    .stamps__pointer {
+        display: none;
+    }
+
     .stamps__container {
         grid-template-rows: 1fr .7fr;
         grid-template-columns: .5fr 1fr .5fr;
@@ -915,6 +964,10 @@ p+p {
         justify-self: center;
         align-self: end;
         max-width: none;
+    }
+
+    .stamp__img {
+        width: 10vw;
     }
 
 }
