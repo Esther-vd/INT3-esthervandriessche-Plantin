@@ -1,4 +1,3 @@
-
 // variables for colour - canvas section
 const $canvas = document.querySelector(".colour__canvas");
 const $colourDrawing = document.querySelector(".colour__drawing");
@@ -8,7 +7,6 @@ let colourStrokeColour = "#97B7DB";
 
 const colourDraw = (e) => {
     e.preventDefault();
-
     const startDrawing = e.type === 'mousedown' && drawing === false;
     const continueDrawing = e.type === 'mousemove' && drawing === true;
     const stopDrawing = e.type === 'mouseup';
@@ -25,8 +23,6 @@ const colourDraw = (e) => {
         ctx.strokeStyle = colourStrokeColour;
         ctx.lineTo(position.x, position.y);
         ctx.stroke();
-        console.log("drawing");
-
     } else if (stopDrawing) {
         drawing = false;
         ctx.closePath();
@@ -35,7 +31,6 @@ const colourDraw = (e) => {
 }
 const getMousePos = (canvas, e) => {
     const rect = canvas.getBoundingClientRect();
-
     return {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top
@@ -69,6 +64,7 @@ const colourMouseListeners = () => {
 }
 
 const colourEventsMobile = () => {
+    //activate the mouse events when a touch event is activated but with the touch coordinates
     $canvas.addEventListener('touchstart', e => {
         e.preventDefault();
         let touch = e.touches[0];
@@ -77,7 +73,7 @@ const colourEventsMobile = () => {
             clientY: touch.clientY
         });
         $canvas.dispatchEvent(mouseEvent);
-    }, { passive: false });
+    }, { passive: false }); // web browser don't prevent the scroll with a passive event listener
     $canvas.addEventListener('touchmove', e => {
         e.preventDefault();
         let touch = e.touches[0];
@@ -94,15 +90,70 @@ const colourEventsMobile = () => {
     }, { passive: false });
 }
 
+const colourSetup = () => {
+    $canvas.width = $colourDrawing.getBoundingClientRect().width;
+    $canvas.height = $colourDrawing.getBoundingClientRect().width;
+    colourMouseListeners();
+}
+
+//variables for the pamphlet interaction
+const $imgs = document.querySelectorAll(".shake__img");
+const $box = document.querySelector(".shake__container");
+
+const pamphletImgToRandomPos = (img) => {
+    const numX = Math.floor(Math.random() * ($box.getBoundingClientRect().width - 100));
+    const numY = Math.floor(Math.random() * (($box.getBoundingClientRect().height - 250) - 100) + 100);
+    const angle = Math.floor(Math.random() * (60 + 60) - 60);
+    img.style.left = `${numX}px`;
+    img.style.top = `${numY}px`;
+    img.style.transform = `rotate(${angle}deg)`
+    img.classList.remove("hide");
+}
 
 const init = () => {
-        $canvas.width = $colourDrawing.getBoundingClientRect().width;
-        $canvas.height = $colourDrawing.getBoundingClientRect().width;
-        console.log($canvas.height);
-        colourMouseListeners();
- 
-    
+    colourSetup();
 
+
+    $imgs.forEach(img => {
+        pamphletImgToRandomPos(img);
+        img.addEventListener("mouseover", e => { img.classList.add('hide') });
+    });
+
+    function requestT() {
+        if (typeof DeviceMotionEvent.requestPermission === 'function') {
+            // iOS 13+
+            // alert('enter');
+            DeviceMotionEvent.requestPermission()
+                .then(response => {
+                if (response == 'granted') {
+                    $box.addEventListener('devicemotion', (e) => {
+                        if ((e.rotationRate.alpha > 100 || e.rotationRate.beta > 100 || e.rotationRate.gamma > 100)) {
+                            $imgs.forEach(img => {
+                                img.classList.add('hide')
+                            });
+                        }
+                    })
+                }
+            })
+
+
+
+        } else {
+    // non iOS 13+
+    $box.addEventListener('devicemotion', (e) => {
+        if ((e.rotationRate.alpha > 100 || e.rotationRate.beta > 100 || e.rotationRate.gamma > 100)) {
+            $imgs.forEach(img => {
+                img.classList.add('hide')
+            });
+        }
+    })
+}
+
+    }
+
+document.querySelector(".shake__permission").onclick = requestT;
 }
 
 init();
+
+
