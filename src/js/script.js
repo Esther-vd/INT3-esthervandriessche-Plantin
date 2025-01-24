@@ -197,7 +197,6 @@ const stampSetup = () => {
 let mm = gsap.matchMedia();
 
 //achievements gsap
-const $billsContainer = document.querySelector(".achievements__container");
 const $billsReceiptLeft = document.querySelector(".achievements__receipt__left");
 const $billsReceiptRight = document.querySelector(".achievements__receipt__right");
 
@@ -206,7 +205,7 @@ const billsTimeline = () => {
     $billsReceiptRight.classList.remove("hide");
     let bilssTl = gsap.timeline({
         scrollTrigger: {
-            trigger: $billsContainer,
+            trigger: ".achievements__container",
             start: "top bottom",
             end: "bottom top",
             toggleActions: "play none reverse none",
@@ -226,62 +225,108 @@ const billsTimeline = () => {
 }
 
 //printer gsap
-const $printerSection = document.querySelector(".printer__container");
-const $bookContainer = document.querySelector(".printer__book__container");
-
 const printerTimeline = () => {
     let printerTl = gsap.timeline({
         scrollTrigger: {
-            trigger: $printerSection,
+            trigger: ".printer__container",
             start: "top bottom",
             end: "bottom top",
             toggleActions: "play none reverse none",
             scrub: .5,
-            markers: true
         },
     });
 
-    printerTl.from($bookContainer, {
+    printerTl.from(".printer__book__container", {
         x: - 500
     })
 }
 
 //25000 section gsap
-const $receiptSection = document.querySelector(".receipt__transition__container");
-const $receiptReverseSection = document.querySelector(".receipt__transition__container---reverse");
-const $receiptBottom = document.querySelector(".receipt__transition__bottom");
 const $receiptTop = document.querySelector(".receipt__transition__top");
-const $receiptreverseBottom = document.querySelector(".receipt__transition__bottom--reverse");
-const $receiptreverseTop = document.querySelector(".receipt__transition__top--reverse");
+const $receiptBottom = document.querySelector(".receipt__transition__bottom");
+
 const receiptTimeline = () => {
     let numberTl = gsap.timeline({
         scrollTrigger: {
-            trigger: $receiptSection,
+            trigger: ".receipt__transition__container",
             start: "top bottom",
             end: "bottom top",
             toggleActions: "play none reverse none",
             scrub: .5,
-            markers: true
         },
     });
 
-    numberTl.from($receiptBottom, {x: -800, y: -800})
-        .from($receiptTop, { x: 800, y: -800 },"<");
+    numberTl.from($receiptBottom, { x: 400, y: -400 })
+        .from($receiptTop, { x: -400, y: -400 }, "<");
 
     let numberReverseTl = gsap.timeline({
         scrollTrigger: {
-            trigger: $receiptReverseSection,
+            trigger: ".receipt__transition__container---reverse",
             start: "top bottom",
             end: "bottom top",
             toggleActions: "play none reverse none",
             scrub: .5,
-            markers: true
         },
     });
 
-    numberTl.from($receiptreverseBottom, { x: 800, y: -800 })
-        .from($receiptreverseTop, { x: -800, y: -800 }, "<");
+    numberReverseTl.from(".receipt__transition__bottom--reverse", { x: 400, y: -400 })
+        .from(".receipt__transition__top--reverse", { x: -400, y: -400 }, "<");
 
+}
+
+//map of Antwerp gsap
+
+const mapTimeline = () => {
+    let mapTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".map__container",
+            start: "top bottom",
+            end: "top",
+        },
+    });
+
+    mapTl.from(".map__dart", { x: -600, y: -600, duration: .7, ease: "power4.in" })
+}
+
+//pitfalls section gsap
+const pitfallsTimeline = () => {
+    let mapTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".pitfall__container",
+            start: "top bottom",
+            end: "top center",
+            scrub: .6,
+            toggleActions: "play none reverse none",
+        },
+    });
+
+    mapTl.from(".pitfall__dart", { x: 1000, y: -1000, })
+}
+
+//gsap card effect
+const cardTilt = (e, card) => {
+    const movingcard = `.${card}`;
+    const xPos = (e.clientX / window.innerWidth) - 0.5;
+    const yPos = (e.clientY / window.innerHeight) - 0.5;
+
+    gsap.to(movingcard, 0.6, {
+        rotationY: 5 * xPos,
+        rotationX: 5 * yPos,
+        ease: Power1.easeOut,
+        transformPerspective: 200,
+        transformOrigin: 'center'
+    });
+}
+
+const cardsSetup = () => {
+    const $id = document.querySelector(".introduction__img");
+    document.addEventListener("mousemove", ((e) => { cardTilt(e, $id.classList) }));
+    const $green = document.querySelector(".pamphlets__greenimg");
+    document.addEventListener("mousemove", ((e) => { cardTilt(e, $green.classList[0]) }));
+    const $pink = document.querySelector(".pamphlets__pinkimg ");
+    document.addEventListener("mousemove", ((e) => { cardTilt(e, $pink.classList[0]) }));
+    const $blue = document.querySelector(".pamphlets__blueimg ");
+    document.addEventListener("mousemove", ((e) => { cardTilt(e, $blue.classList[0]) }));
 }
 
 const init = () => {
@@ -297,6 +342,10 @@ const init = () => {
     billsTimeline();
     printerTimeline();
     receiptTimeline();
+    mapTimeline();
+    pitfallsTimeline();
+
+    cardsSetup();
 }
 
 init();
