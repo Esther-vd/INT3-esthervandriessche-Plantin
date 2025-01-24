@@ -27,8 +27,8 @@ const colourDraw = (e) => {
         drawing = false;
         ctx.closePath();
     };
-
 };
+
 const getMousePos = (canvas, e) => {
     const rect = canvas.getBoundingClientRect();
     return {
@@ -134,13 +134,11 @@ const requestT = () => {
                     }, false)
                 }
             })
-
-
             .catch(console.error)
     } else {
         // non iOS 13+
         window.addEventListener('devicemotion', (e) => {
-            if ((e.rotationRate.alpha > 100 || e.rotationRate.beta > 100 || e.rotationRate.gamma > 100)) {
+            if ((e.rotationRate.alpha > 260 || e.rotationRate.beta > 260 || e.rotationRate.gamma > 260)) {
                 $imgs.forEach(img => {
                     img.classList.add('hide')
                 });
@@ -156,29 +154,28 @@ const $stampSection = document.querySelector(".stamps__container");
 let stampCounter = 0;
 const stampMaximum = 8;
 
-const stampMouseFollow = (stamp, section) => {
-    section.addEventListener("mouseenter", e => {
-        gsap.to(stamp, { scale: 1, opacity: 1 }, 0.3);
-        positionCircle(e, stamp, section);
-    });
-    section.addEventListener("mouseleave", e => {
-        gsap.to(stamp, { scale: 0, opacity: 0 }, 0.3);
-        positionCircle(e, stamp, section);
-    });
+// const stampMouseFollow = (stamp, section) => {
+//     section.addEventListener("mouseenter", e => {
+//         gsap.to(stamp, { scale: 1, opacity: 1 }, 0.3);
+//         positionCircle(e, stamp, section);
+//     });
+//     section.addEventListener("mouseleave", e => {
+//         gsap.to(stamp, { scale: 0, opacity: 0 }, 0.3);
+//         positionCircle(e, stamp, section);
+//     });
     
-    section.addEventListener("mousemove", e => {
-        gsap.to(stamp, { scale: 1, opacity: 1 }, 0.3);
-        positionCircle(e, stamp, section);
-    });
-}
+//     section.addEventListener("mousemove", e => {
+//         gsap.to(stamp, { scale: 1, opacity: 1 }, 0.3);
+//         positionCircle(e, stamp, section);
+//     });
+// }
 
-const positionCircle = (e, stamp, section) => {
-   let xTo = gsap.quickTo(stamp, "x", { duration: 0.3 });
-    let yTo = gsap.quickTo(stamp, "y", { duration: 0.3 });
-
-    xTo(e.pageX - section.offsetLeft);
-    yTo(e.pageY - section.offsetTop);
-}
+// const positionCircle = (e, stamp, section) => {
+//    let xTo = gsap.quickTo(stamp, "x", { duration: 0.3 });
+//     let yTo = gsap.quickTo(stamp, "y", { duration: 0.3 });
+//     xTo(e.pageX - section.offsetLeft);
+//     yTo(e.pageY - section.offsetTop);
+// }
 
 const stampClick = (e) => {
    if (stampCounter < stampMaximum){
@@ -192,16 +189,20 @@ const stampClick = (e) => {
    }
 }
 
+const stampSetup = () => {
+    $stamps.forEach(stamp => {
+        gsap.set(stamp, { scale: 0, xPercent: -50, yPercent: -50 });
+    });
+    $stampSection.addEventListener('click', e => stampClick(e));
+}
+
 const init = () => {
     colourSetup();
     //pamphlet interaction
     pamphletPlaceImg();
     document.querySelector(".shake__permission").onclick = requestT;
     //stamp interaction
-    $stamps.forEach(stamp => {
-        gsap.set(stamp, { scale: 0, xPercent: -50, yPercent: -50 });
-    });
-    $stampSection.addEventListener('click', e => stampClick(e));
+    stampSetup();
 }
 
 init();
