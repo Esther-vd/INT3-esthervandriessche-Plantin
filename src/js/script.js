@@ -335,7 +335,6 @@ const init = () => {
     //pamphlet interaction
     pamphletPlaceImg();
     document.querySelector(".shake__permission").addEventListener("click", requestT() );
-    document.querySelector(".shake__permission").click();
     //stamp interaction
     stampSetup();
 
@@ -350,5 +349,4 @@ const init = () => {
 }
 
 init();
-// requestT();
-// document.querySelector(".shake__permission").addEventListener("click", requestT());
+
