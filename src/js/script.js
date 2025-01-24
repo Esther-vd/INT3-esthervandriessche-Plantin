@@ -163,7 +163,7 @@ const stampMaximum = 8;
 //         gsap.to(stamp, { scale: 0, opacity: 0 }, 0.3);
 //         positionCircle(e, stamp, section);
 //     });
-    
+
 //     section.addEventListener("mousemove", e => {
 //         gsap.to(stamp, { scale: 1, opacity: 1 }, 0.3);
 //         positionCircle(e, stamp, section);
@@ -178,15 +178,15 @@ const stampMaximum = 8;
 // }
 
 const stampClick = (e) => {
-   if (stampCounter < stampMaximum){
-       $stamps[stampCounter].classList.remove("hide");
-       gsap.set($stamps[stampCounter], { x: e.pageX - $stampSection.offsetLeft, y: e.pageY - $stampSection.offsetTop, scale: 1}, 0.3);
-       stampCounter++;
-   }else{
-    stampCounter = 0;
-       gsap.set($stamps[stampCounter], { x: e.pageX - $stampSection.offsetLeft, y: e.pageY - $stampSection.offsetTop, scale: 1 }, 0.3);
-       stampCounter++;
-   }
+    if (stampCounter < stampMaximum) {
+        $stamps[stampCounter].classList.remove("hide");
+        gsap.set($stamps[stampCounter], { x: e.pageX - $stampSection.offsetLeft, y: e.pageY - $stampSection.offsetTop, scale: 1 }, 0.3);
+        stampCounter++;
+    } else {
+        stampCounter = 0;
+        gsap.set($stamps[stampCounter], { x: e.pageX - $stampSection.offsetLeft, y: e.pageY - $stampSection.offsetTop, scale: 1 }, 0.3);
+        stampCounter++;
+    }
 }
 
 const stampSetup = () => {
@@ -196,13 +196,53 @@ const stampSetup = () => {
     $stampSection.addEventListener('click', e => stampClick(e));
 }
 
+//scrollytelling sections
+let mm = gsap.matchMedia();
+
+//achievements gsap
+const $billsContainer = document.querySelector(".achievements__container");
+const $billsReceiptLeft = document.querySelector(".achievements__receipt__left");
+const $billsReceiptRight = document.querySelector(".achievements__receipt__right");
+
+const billsTimeline = () => {
+    $billsReceiptLeft.classList.remove("hide");
+    $billsReceiptRight.classList.remove("hide");
+    let bilssTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: $billsContainer,
+            start: "top bottom",
+            end: "bottom top",
+            toggleActions: "play none reverse none",
+            scrub: .5,
+            markers: true
+        },
+    });
+
+    mm.add("(max-width: 799px)", () => {
+        bilssTl.from($billsReceiptRight, { x: 600, y: -600, duration:1 },) 
+            .from($billsReceiptLeft, { x: -600, y: -600, duration: 4 },  )
+           
+    });
+    mm.add("(min-width: 800px)", () => {
+        bilssTl.from($billsReceiptRight, { x: 600, y: -600 }, "-2")
+            .from($billsReceiptLeft, { x: -600, y: -600 }, "<")
+    });
+}
+
+//printer gsap
+
 const init = () => {
+    gsap.registerPlugin(ScrollTrigger);
     colourSetup();
     //pamphlet interaction
     pamphletPlaceImg();
-    document.querySelector(".shake__permission").onclick = requestT;
+    // document.querySelector(".shake__permission").onclick = requestT;
     //stamp interaction
     stampSetup();
+
+    //scrolltriggers
+    billsTimeline();
 }
 
 init();
+requestT();
