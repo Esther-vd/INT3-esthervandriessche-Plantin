@@ -120,13 +120,11 @@ const pamphletPlaceImg = () => {
 const requestT = () => {
     document.querySelector(".shake__permission").classList.add('hide');
     if (typeof DeviceMotionEvent.requestPermission === 'function') {
-        // iOS 13+
-        // alert('enter');
         DeviceMotionEvent.requestPermission()
             .then(response => {
                 if (response == 'granted') {
                     window.addEventListener('devicemotion', (e) => {
-                        if ((e.rotationRate.alpha > 250 || e.rotationRate.beta > 250 || e.rotationRate.gamma > 250)) {
+                        if ((e.rotationRate.alpha > 360 || e.rotationRate.beta > 360 || e.rotationRate.gamma > 360)) {
                             $imgs.forEach(img => {
                                 img.classList.add('hide')
                             });
@@ -136,9 +134,8 @@ const requestT = () => {
             })
             .catch(console.error)
     } else {
-        // non iOS 13+
         window.addEventListener('devicemotion', (e) => {
-            if ((e.rotationRate.alpha > 260 || e.rotationRate.beta > 260 || e.rotationRate.gamma > 260)) {
+            if ((e.rotationRate.alpha > 360 || e.rotationRate.beta > 360 || e.rotationRate.gamma > 360)) {
                 $imgs.forEach(img => {
                     img.classList.add('hide')
                 });
@@ -214,14 +211,13 @@ const billsTimeline = () => {
             end: "bottom top",
             toggleActions: "play none reverse none",
             scrub: .5,
-            markers: true
         },
     });
 
     mm.add("(max-width: 799px)", () => {
-        bilssTl.from($billsReceiptRight, { x: 600, y: -600, duration:1 },) 
-            .from($billsReceiptLeft, { x: -600, y: -600, duration: 4 },  )
-           
+        bilssTl.from($billsReceiptRight, { x: 600, y: -600, duration: 1, delay: 2 },)
+            .from($billsReceiptLeft, { x: -600, y: -600, duration: 6 },)
+
     });
     mm.add("(min-width: 800px)", () => {
         bilssTl.from($billsReceiptRight, { x: 600, y: -600 }, "-2")
@@ -230,19 +226,79 @@ const billsTimeline = () => {
 }
 
 //printer gsap
+const $printerSection = document.querySelector(".printer__container");
+const $bookContainer = document.querySelector(".printer__book__container");
+
+const printerTimeline = () => {
+    let printerTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: $printerSection,
+            start: "top bottom",
+            end: "bottom top",
+            toggleActions: "play none reverse none",
+            scrub: .5,
+            markers: true
+        },
+    });
+
+    printerTl.from($bookContainer, {
+        x: - 500
+    })
+}
+
+//25000 section gsap
+const $receiptSection = document.querySelector(".receipt__transition__container");
+const $receiptReverseSection = document.querySelector(".receipt__transition__container---reverse");
+const $receiptBottom = document.querySelector(".receipt__transition__bottom");
+const $receiptTop = document.querySelector(".receipt__transition__top");
+const $receiptreverseBottom = document.querySelector(".receipt__transition__bottom--reverse");
+const $receiptreverseTop = document.querySelector(".receipt__transition__top--reverse");
+const receiptTimeline = () => {
+    let numberTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: $receiptSection,
+            start: "top bottom",
+            end: "bottom top",
+            toggleActions: "play none reverse none",
+            scrub: .5,
+            markers: true
+        },
+    });
+
+    numberTl.from($receiptBottom, {x: -800, y: -800})
+        .from($receiptTop, { x: 800, y: -800 },"<");
+
+    let numberReverseTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: $receiptReverseSection,
+            start: "top bottom",
+            end: "bottom top",
+            toggleActions: "play none reverse none",
+            scrub: .5,
+            markers: true
+        },
+    });
+
+    numberTl.from($receiptreverseBottom, { x: 800, y: -800 })
+        .from($receiptreverseTop, { x: -800, y: -800 }, "<");
+
+}
 
 const init = () => {
     gsap.registerPlugin(ScrollTrigger);
     colourSetup();
     //pamphlet interaction
     pamphletPlaceImg();
-    // document.querySelector(".shake__permission").onclick = requestT;
+    // document.querySelector(".shake__permission").addEventListener("click", requestT() );
     //stamp interaction
     stampSetup();
 
     //scrolltriggers
     billsTimeline();
+    printerTimeline();
+    receiptTimeline();
 }
 
 init();
-requestT();
+document.querySelector(".shake__permission").addEventListener("click", requestT());
+document.querySelector(".shake__permission").click();
