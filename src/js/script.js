@@ -334,7 +334,7 @@ const init = () => {
     colourSetup();
     //pamphlet interaction
     pamphletPlaceImg();
-    document.querySelector(".shake__permission").addEventListener("click", requestT());
+    document.querySelector(".shake__permission").addEventListener("click", requestT);
     //stamp interaction
     stampSetup();
 
