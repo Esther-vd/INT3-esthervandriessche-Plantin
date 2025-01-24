@@ -349,5 +349,6 @@ const init = () => {
 }
 
 init();
+requestT();
 document.querySelector(".shake__permission").addEventListener("click", requestT());
 document.querySelector(".shake__permission").click();
