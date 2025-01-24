@@ -124,7 +124,7 @@ const requestT = () => {
             .then(response => {
                 if (response == 'granted') {
                     window.addEventListener('devicemotion', (e) => {
-                        if ((e.rotationRate.alpha > 360 || e.rotationRate.beta > 360 || e.rotationRate.gamma > 360)) {
+                        if ((e.rotationRate.alpha > 260 || e.rotationRate.beta > 260 || e.rotationRate.gamma > 260)) {
                             $imgs.forEach(img => {
                                 img.classList.add('hide')
                             });
@@ -135,7 +135,7 @@ const requestT = () => {
             .catch(console.error)
     } else {
         window.addEventListener('devicemotion', (e) => {
-            if ((e.rotationRate.alpha > 360 || e.rotationRate.beta > 360 || e.rotationRate.gamma > 360)) {
+            if ((e.rotationRate.alpha > 260 || e.rotationRate.beta > 260 || e.rotationRate.gamma > 260)) {
                 $imgs.forEach(img => {
                     img.classList.add('hide')
                 });
