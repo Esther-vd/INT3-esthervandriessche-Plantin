@@ -120,13 +120,11 @@ const pamphletPlaceImg = () => {
 const requestT = () => {
     document.querySelector(".shake__permission").classList.add('hide');
     if (typeof DeviceMotionEvent.requestPermission === 'function') {
-        // iOS 13+
-        // alert('enter');
         DeviceMotionEvent.requestPermission()
             .then(response => {
                 if (response == 'granted') {
                     window.addEventListener('devicemotion', (e) => {
-                        if ((e.rotationRate.alpha > 250 || e.rotationRate.beta > 250 || e.rotationRate.gamma > 250)) {
+                        if ((e.rotationRate.alpha > 360 || e.rotationRate.beta > 360 || e.rotationRate.gamma > 360)) {
                             $imgs.forEach(img => {
                                 img.classList.add('hide')
                             });
@@ -136,9 +134,8 @@ const requestT = () => {
             })
             .catch(console.error)
     } else {
-        // non iOS 13+
         window.addEventListener('devicemotion', (e) => {
-            if ((e.rotationRate.alpha > 260 || e.rotationRate.beta > 260 || e.rotationRate.gamma > 260)) {
+            if ((e.rotationRate.alpha > 360 || e.rotationRate.beta > 360 || e.rotationRate.gamma > 360)) {
                 $imgs.forEach(img => {
                     img.classList.add('hide')
                 });
@@ -200,7 +197,6 @@ const stampSetup = () => {
 let mm = gsap.matchMedia();
 
 //achievements gsap
-const $billsContainer = document.querySelector(".achievements__container");
 const $billsReceiptLeft = document.querySelector(".achievements__receipt__left");
 const $billsReceiptRight = document.querySelector(".achievements__receipt__right");
 
@@ -209,19 +205,18 @@ const billsTimeline = () => {
     $billsReceiptRight.classList.remove("hide");
     let bilssTl = gsap.timeline({
         scrollTrigger: {
-            trigger: $billsContainer,
+            trigger: ".achievements__container",
             start: "top bottom",
             end: "bottom top",
             toggleActions: "play none reverse none",
             scrub: .5,
-            markers: true
         },
     });
 
     mm.add("(max-width: 799px)", () => {
-        bilssTl.from($billsReceiptRight, { x: 600, y: -600, duration:1 },) 
-            .from($billsReceiptLeft, { x: -600, y: -600, duration: 4 },  )
-           
+        bilssTl.from($billsReceiptRight, { x: 600, y: -600, duration: 1, delay: 2 },)
+            .from($billsReceiptLeft, { x: -600, y: -600, duration: 6 },)
+
     });
     mm.add("(min-width: 800px)", () => {
         bilssTl.from($billsReceiptRight, { x: 600, y: -600 }, "-2")
@@ -230,19 +225,129 @@ const billsTimeline = () => {
 }
 
 //printer gsap
+const printerTimeline = () => {
+    let printerTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".printer__container",
+            start: "top bottom",
+            end: "bottom top",
+            toggleActions: "play none reverse none",
+            scrub: .5,
+        },
+    });
+
+    printerTl.from(".printer__book__container", {
+        x: - 500
+    })
+}
+
+//25000 section gsap
+const $receiptTop = document.querySelector(".receipt__transition__top");
+const $receiptBottom = document.querySelector(".receipt__transition__bottom");
+
+const receiptTimeline = () => {
+    let numberTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".receipt__transition__container",
+            start: "top bottom",
+            end: "bottom top",
+            toggleActions: "play none reverse none",
+            scrub: .5,
+        },
+    });
+
+    numberTl.from($receiptBottom, { x: 400, y: -400 })
+        .from($receiptTop, { x: -400, y: -400 }, "<");
+
+    let numberReverseTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".receipt__transition__container---reverse",
+            start: "top bottom",
+            end: "bottom top",
+            toggleActions: "play none reverse none",
+            scrub: .5,
+        },
+    });
+
+    numberReverseTl.from(".receipt__transition__bottom--reverse", { x: 400, y: -400 })
+        .from(".receipt__transition__top--reverse", { x: -400, y: -400 }, "<");
+
+}
+
+//map of Antwerp gsap
+
+const mapTimeline = () => {
+    let mapTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".map__container",
+            start: "top bottom",
+            end: "top",
+        },
+    });
+
+    mapTl.from(".map__dart", { x: -600, y: -600, duration: .7, ease: "power4.in" })
+}
+
+//pitfalls section gsap
+const pitfallsTimeline = () => {
+    let mapTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".pitfall__container",
+            start: "top bottom",
+            end: "top center",
+            scrub: .6,
+            toggleActions: "play none reverse none",
+        },
+    });
+
+    mapTl.from(".pitfall__dart", { x: 1000, y: -1000, })
+}
+
+//gsap card effect
+const cardTilt = (e, card) => {
+    const movingcard = `.${card}`;
+    const xPos = (e.clientX / window.innerWidth) - 0.5;
+    const yPos = (e.clientY / window.innerHeight) - 0.5;
+
+    gsap.to(movingcard, 0.6, {
+        rotationY: 5 * xPos,
+        rotationX: 5 * yPos,
+        ease: Power1.easeOut,
+        transformPerspective: 200,
+        transformOrigin: 'center'
+    });
+}
+
+const cardsSetup = () => {
+    const $id = document.querySelector(".introduction__img");
+    document.addEventListener("mousemove", ((e) => { cardTilt(e, $id.classList) }));
+    const $green = document.querySelector(".pamphlets__greenimg");
+    document.addEventListener("mousemove", ((e) => { cardTilt(e, $green.classList[0]) }));
+    const $pink = document.querySelector(".pamphlets__pinkimg ");
+    document.addEventListener("mousemove", ((e) => { cardTilt(e, $pink.classList[0]) }));
+    const $blue = document.querySelector(".pamphlets__blueimg ");
+    document.addEventListener("mousemove", ((e) => { cardTilt(e, $blue.classList[0]) }));
+}
 
 const init = () => {
     gsap.registerPlugin(ScrollTrigger);
     colourSetup();
     //pamphlet interaction
     pamphletPlaceImg();
-    // document.querySelector(".shake__permission").onclick = requestT;
+    // document.querySelector(".shake__permission").addEventListener("click", requestT() );
     //stamp interaction
     stampSetup();
 
     //scrolltriggers
     billsTimeline();
+    printerTimeline();
+    receiptTimeline();
+    mapTimeline();
+    pitfallsTimeline();
+
+    cardsSetup();
 }
 
 init();
-requestT();
+document.querySelector(".shake__permission").addEventListener("click", requestT());
+document.querySelector(".shake__permission").click();

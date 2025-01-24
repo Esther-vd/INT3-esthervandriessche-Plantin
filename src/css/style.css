@@ -1207,9 +1207,9 @@ p+p {
     top: -5%;
 }
 
-.map__dart img {
+/* .map__dart img {
     filter: var(---dropshadow-base);
-}
+} */
 
 
 .map__red-caps {
@@ -1498,8 +1498,7 @@ p+p {
     position: relative;
 }
 
-.pitfall__photo img,
-.pitfall__dart img {
+.pitfall__photo img{
     filter: var(---dropshadow-base);
 }
 
