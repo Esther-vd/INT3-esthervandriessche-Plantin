@@ -124,7 +124,7 @@ const requestT = () => {
             .then(response => {
                 if (response == 'granted') {
                     window.addEventListener('devicemotion', (e) => {
-                        if ((e.rotationRate.alpha > 260 || e.rotationRate.beta > 260 || e.rotationRate.gamma > 260)) {
+                        if ((e.rotationRate.alpha > 256 || e.rotationRate.beta > 256 || e.rotationRate.gamma > 256)) {
                             $imgs.forEach(img => {
                                 img.classList.add('hide')
                             });
@@ -135,7 +135,7 @@ const requestT = () => {
             .catch(console.error)
     } else {
         window.addEventListener('devicemotion', (e) => {
-            if ((e.rotationRate.alpha > 260 || e.rotationRate.beta > 260 || e.rotationRate.gamma > 260)) {
+            if ((e.rotationRate.alpha > 256 || e.rotationRate.beta > 256 || e.rotationRate.gamma > 256)) {
                 $imgs.forEach(img => {
                     img.classList.add('hide')
                 });
@@ -334,7 +334,7 @@ const init = () => {
     colourSetup();
     //pamphlet interaction
     pamphletPlaceImg();
-    document.querySelector(".shake__permission").addEventListener("click", requestT() );
+    document.querySelector(".shake__permission").addEventListener("click", requestT());
     //stamp interaction
     stampSetup();
 
