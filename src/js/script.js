@@ -127,7 +127,7 @@ const shakePermission = () => {
                         if ((e.rotationRate.alpha > 256 || e.rotationRate.beta > 256 || e.rotationRate.gamma > 256)) {
                             setTimeout(() => {
                                 $imgs.forEach(img => { animatePamphlets(img); });
-                            }, "3000");
+                            }, "2000");
                         }
                     }, false)
                 }
