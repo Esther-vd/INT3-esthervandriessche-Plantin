@@ -113,11 +113,11 @@ const pamphletImgToRandomPos = (img) => {
 const pamphletPlaceImg = () => {
     $imgs.forEach(img => {
         pamphletImgToRandomPos(img);
-        img.addEventListener("mouseover", () => { img.classList.add('hide'); });
+        img.addEventListener("mouseover", e => { animatePamphlets(e.target) });
     });
 }
 
-const requestT = () => {
+const shakePermission = () => {
     document.querySelector(".shake__permission").classList.add('hide');
     if (typeof DeviceMotionEvent.requestPermission === 'function') {
         DeviceMotionEvent.requestPermission()
@@ -125,9 +125,9 @@ const requestT = () => {
                 if (response == 'granted') {
                     window.addEventListener('devicemotion', (e) => {
                         if ((e.rotationRate.alpha > 256 || e.rotationRate.beta > 256 || e.rotationRate.gamma > 256)) {
-                            $imgs.forEach(img => {
-                                img.classList.add('hide')
-                            });
+                            setTimeout(() => {
+                                $imgs.forEach(img => { animatePamphlets(img); });
+                            }, "3000");
                         }
                     }, false)
                 }
@@ -136,43 +136,29 @@ const requestT = () => {
     } else {
         window.addEventListener('devicemotion', (e) => {
             if ((e.rotationRate.alpha > 256 || e.rotationRate.beta > 256 || e.rotationRate.gamma > 256)) {
-                $imgs.forEach(img => {
-                    img.classList.add('hide')
-                });
+                setTimeout(() => {
+                    $imgs.forEach(img => { animatePamphlets(img); });
+                }, "3000");
             }
         })
     }
 }
 
+const animatePamphlets = (img) => {
+    const random = (Math.random() >= 0.5) ? 1 : 0;
+    if (random === 1) {
+        gsap.to(img, { x: 500, opacity: 0, duration: 3 });
+    } else {
+        gsap.to(img, { x: -500, opacity: 0, duration: 3 });
+    }
+
+}
+
 //stamp section variables
 const $stamps = document.querySelectorAll(".stamp__img");
-const $stampsplace = document.querySelectorAll(".stamp__img__place");
 const $stampSection = document.querySelector(".stamps__container");
 let stampCounter = 0;
 const stampMaximum = 8;
-
-// const stampMouseFollow = (stamp, section) => {
-//     section.addEventListener("mouseenter", e => {
-//         gsap.to(stamp, { scale: 1, opacity: 1 }, 0.3);
-//         positionCircle(e, stamp, section);
-//     });
-//     section.addEventListener("mouseleave", e => {
-//         gsap.to(stamp, { scale: 0, opacity: 0 }, 0.3);
-//         positionCircle(e, stamp, section);
-//     });
-
-//     section.addEventListener("mousemove", e => {
-//         gsap.to(stamp, { scale: 1, opacity: 1 }, 0.3);
-//         positionCircle(e, stamp, section);
-//     });
-// }
-
-// const positionCircle = (e, stamp, section) => {
-//    let xTo = gsap.quickTo(stamp, "x", { duration: 0.3 });
-//     let yTo = gsap.quickTo(stamp, "y", { duration: 0.3 });
-//     xTo(e.pageX - section.offsetLeft);
-//     yTo(e.pageY - section.offsetTop);
-// }
 
 const stampClick = (e) => {
     if (stampCounter < stampMaximum) {
@@ -275,17 +261,17 @@ const receiptTimeline = () => {
 }
 
 //map of Antwerp gsap
-
 const mapTimeline = () => {
     let mapTl = gsap.timeline({
         scrollTrigger: {
             trigger: ".map__container",
             start: "top bottom",
-            end: "top",
+            end: "top center",
+            scrub: .5,
         },
     });
 
-    mapTl.from(".map__dart", { x: -600, y: -600, duration: .7, ease: "power4.in" })
+    mapTl.from(".map__dart", { x: -600, y: -600, ease: "power4.in" })
 }
 
 //pitfalls section gsap
@@ -300,7 +286,7 @@ const pitfallsTimeline = () => {
         },
     });
 
-    mapTl.from(".pitfall__dart", { x: 1000, y: -1000, })
+    mapTl.from(".pitfall__dart", { x: 1000, y: -1000, opacity: 0 })
 }
 
 //gsap card effect
@@ -327,6 +313,66 @@ const cardsSetup = () => {
     document.addEventListener("mousemove", ((e) => { cardTilt(e, $pink.classList[0]) }));
     const $blue = document.querySelector(".pamphlets__blueimg ");
     document.addEventListener("mousemove", ((e) => { cardTilt(e, $blue.classList[0]) }));
+    const $header = document.querySelector(".header__img__paper");
+    document.addEventListener("mousemove", ((e) => { cardTilt(e, $header.classList[0]) }));
+    const $idHeader = document.querySelector(".header__img__passport");
+    document.addEventListener("mousemove", ((e) => { cardTilt(e, $idHeader.classList[0]) }));
+}
+
+//header gsap
+const headerTl = () => {
+    const $headerImg = document.querySelector(".header__img__paper");
+    $headerImg.addEventListener("mouseenter", () => headerTl.play());
+    $headerImg.addEventListener("mouseleave", () => headerTl.reverse())
+
+    let headerTl = gsap.to(".header__img__passport", { rotation: 90, x: 100, duration: .7, paused: true, });
+
+}
+
+const numberTimeline = () => {
+
+}
+
+//passport gsap + interaction
+const $open = document.querySelector(".pass__img__open");
+const $closed = document.querySelector(".pass__img__closed");
+const $passId = document.querySelector(".pass__id");
+const $stamp = document.querySelector(".stamp__img__antwerp");
+const $stampPassContainer = document.querySelector(".pass__img");
+
+const passTimeline = () => {
+    let passTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".pass__container",
+            start: "top bottom",
+            end: "top center",
+            scrub: .6,
+            toggleActions: "play none none none",
+        },
+    });
+   
+    passTl.from($closed, { y: 1000, onComplete: passCloseToOpen, onStart: passShowClosed, duration: 5 })
+    .from($passId, { y: 1000, duration: 4 }, "<")
+}
+
+const passShowClosed = () => {
+     $closed.classList.remove("hide");
+    $passId.classList.remove("hide");
+    $open.classList.remove("hide");
+    $open.style.opacity = 0;
+    $closed.style.opacity = 1;
+}
+
+const passCloseToOpen = () => {
+    $open.style.opacity = 1;
+    $closed.style.opacity = 0;
+    gsap.set($stamp, { scale: 0, xPercent: -50, yPercent: -50 });
+    $stampPassContainer.addEventListener("click", e => {stampPassport(e)});
+}
+
+const stampPassport = e => {
+    $stamp.classList.remove("hide");
+    gsap.set($stamp, { x: e.pageX - $stampPassContainer.offsetLeft, y: e.pageY - $stampPassContainer.offsetTop, scale: 1 }, 0.3);
 }
 
 const init = () => {
@@ -334,16 +380,18 @@ const init = () => {
     colourSetup();
     //pamphlet interaction
     pamphletPlaceImg();
-    document.querySelector(".shake__permission").addEventListener("click", requestT);
+    document.querySelector(".shake__permission").addEventListener("click", shakePermission);
     //stamp interaction
     stampSetup();
-
     //scrolltriggers
+    headerTl();
     billsTimeline();
     printerTimeline();
     receiptTimeline();
     mapTimeline();
     pitfallsTimeline();
+    numberTimeline();
+    passTimeline();
 
     cardsSetup();
 }

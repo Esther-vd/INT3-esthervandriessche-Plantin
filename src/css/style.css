@@ -335,6 +335,7 @@ p+p {
     margin-bottom: 4rem;
     margin-right: -3rem;
     border-radius: 3.125rem;
+    z-index: 5;
 }
 
 .header__img__stamp {
@@ -1235,7 +1236,7 @@ p+p {
     display: grid;
     align-items: center;
     justify-content: center;
-    min-height: 50vh;
+    min-height: 100vh;
     margin-bottom: 5rem;
 }
 
@@ -1270,7 +1271,10 @@ p+p {
     transform: rotate(5.293deg);
     grid-column: 1;
     grid-row: 2 / span 2;
+    justify-self: center;    
+    align-self: center;
     place-items: center;
+    cursor: url('../../assets/svg/pointer-hand-angle.png') -100 100, grab;
 }
 
 .pass__img__closed img,
@@ -1278,10 +1282,6 @@ p+p {
     filter: var(---dropshadow-base);
 }
 
-.pass__id img {
-    box-shadow: var(--shadow-base);
-    border-radius: 3.125rem;
-}
 
 .pass__img__closed {
     grid-column: 1;
@@ -1295,15 +1295,30 @@ p+p {
     transform: scale(.9);
 }
 
+.stamp__img__antwerp{
+    position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        width: 30vw;
+        mix-blend-mode: multiply;
+        opacity: .85;
+}
+
 @media screen and (min-width : 50em) {
     .pass__id {
         align-self: start;
     }
 
     .pass__img {
-        align-self: start;
+        align-self: center;
         grid-row: 1 / span 3;
+        max-width: 35rem;
     }
+
+        .stamp__img__antwerp {
+            width: 10vw;
+        }
 }
 
 /* --- colour section -------------------------------------------------------------------------------------------- */
@@ -1423,6 +1438,10 @@ p+p {
     display: grid;
     place-items: center;
     cursor: grab;
+}
+
+.colour__container{
+    margin-top: 5rem;
 }
 
 @media screen and (min-width : 50em) {
