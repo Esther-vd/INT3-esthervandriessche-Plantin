@@ -1603,8 +1603,15 @@ p+p {
     }
 }
 
+@media screen and (min-width : 60em) {
+    .pitfall__container {
+            grid-template-rows: auto 1fr 1fr .5fr;
+        }
+}
+
 /* --- pamphlet section ---------------------------------------------------------------------------------------- */
 .pamphlets__container {
+
     display: grid;
     grid-template-columns: .5fr .5fr .5fr .5fr;
     grid-template-rows: auto auto 1fr .2fr .2fr auto;
@@ -1654,6 +1661,7 @@ p+p {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: .5fr 1fr;
         gap: 4rem;
+        margin-top: 5rem;
     }
 
     .pamphlets__container__title {

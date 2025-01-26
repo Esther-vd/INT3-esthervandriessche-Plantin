@@ -329,9 +329,18 @@ const headerTl = () => {
 
 }
 
+//25000 gsap
 const numberTimeline = () => {
-
-}
+    const $numberPostit = document.querySelector(".number__post-it");
+    $numberPostit.classList.remove("hide")
+    gsap.to($numberPostit, {y: 500, opacity: 0,  scrollTrigger:{
+        trigger: ".number__container",
+        start: "center center",
+        end: "bottom top",
+        scrub: .6,
+        toggleActions: "play none reverse none",
+    }, duration:.5 });
+};
 
 //passport gsap + interaction
 const $open = document.querySelector(".pass__img__open");
@@ -375,6 +384,18 @@ const stampPassport = e => {
     gsap.set($stamp, { x: e.pageX - $stampPassContainer.offsetLeft, y: e.pageY - $stampPassContainer.offsetTop, scale: 1 }, 0.3);
 }
 
+//section more in the museum gsap
+const moreTimeline = () => {
+    const $moreImg = document.querySelector(".more__container__img");
+    $moreImg.addEventListener("mouseenter", () => headerTl.play());
+    $moreImg.addEventListener("mouseleave", () => headerTl.reverse())
+
+    let headerTl = gsap.timeline({paused:true}); 
+    headerTl.to(".more__pamphlet", { rotation: -10, x: -30, y: -50, duration: .7})
+            .to(".more__family", { rotation: 20, x: 20, y: -30, duration: .7}, "<")
+        .to(".more__daughter", { rotation: 20, x: 20, y: 30, duration: .7 }, "<");
+}
+
 const init = () => {
     gsap.registerPlugin(ScrollTrigger);
     colourSetup();
@@ -392,6 +413,7 @@ const init = () => {
     pitfallsTimeline();
     numberTimeline();
     passTimeline();
+    moreTimeline();
 
     cardsSetup();
 }
